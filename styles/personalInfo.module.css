@@ -1,0 +1,29 @@
+.personalinfo__container{
+    width: 700px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+ .item {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    justify-content: center;
+}
+ .item input {
+    padding: 1rem 3rem;
+    background: none;
+    border: solid black 1px;
+}
+
+.personalinfo__container button {
+    padding: 1rem 2.2rem;
+    background-color: rgb(21, 53, 160);
+    color : white;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+}

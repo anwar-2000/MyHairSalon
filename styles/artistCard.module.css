@@ -1,0 +1,13 @@
+.artistCard__container{
+    width: 200px;
+    height: 50px;
+    display: flex;
+    padding: 0.5rem;
+    border-radius: 10px;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    color : rgb(12, 11, 11);
+    border: solid 1px black;;
+}
