@@ -1,0 +1,39 @@
+.about__container{
+    height : 50vh;
+    background-color: rgb(252, 252, 252);
+    color : rgb(133, 133, 133);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width : 100vw;
+    padding-bottom: 5rem;
+}
+.about__container h1 {
+    font-weight: bold;
+    font-size : 4rem;
+    transform: translate(3rem,-3rem);
+    color : black;
+}
+
+.about__container p {
+    font-size: 1.5rem;
+    width : 90%;
+    transform: translateX(3rem);
+}
+
+@media screen and (max-width : 720px) {
+    .about__container{
+        transform: translate(0rem,-23.8rem) !important;
+    }
+    .about__container h1{
+        font-size: 1.5rem;
+        transform: translate(1rem,-3rem) !important;
+    }
+    .about__container p {
+        font-size: 0.6rem;
+        width : 90%;
+        transform: translateX(1rem);
+        padding-bottom: 0rem;
+    }
+}

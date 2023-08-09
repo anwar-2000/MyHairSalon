@@ -1,0 +1,43 @@
+.testomenials__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap : 1.5rem;
+    flex-direction: column;
+    background-color: black;
+    height : 100vh;
+    width : 100vw;
+}
+.arrows{
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.testomenial{
+    width : 650px;
+    height : 350px;
+    background-color: white;
+    border-radius: 10px;
+    color : black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    flex-direction: column;
+    gap : 0.5rem;
+}
+.testomenial p {
+    width : 80%;
+}
+@media screen and (max-width : 720px) {
+    .testomenials__container{
+        transform : translateY(-30rem);
+    }
+    .testomenial{
+        width : 300px;
+        height : 250px;
+    }
+}

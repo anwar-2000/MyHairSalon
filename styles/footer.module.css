@@ -1,0 +1,21 @@
+.footer_container{
+    background-color: rgb(255, 255, 255);
+    width: 100vw;
+    height: 20vh;
+    color : rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.icons {
+    display: flex;
+    gap : 2rem;
+}
+
+@media screen and (max-width : 720px) {
+    .footer_container{
+        transform : translateY(-31rem);
+        flex-direction: column;
+    }   
+}
