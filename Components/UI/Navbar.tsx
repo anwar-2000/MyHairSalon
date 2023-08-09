@@ -12,12 +12,12 @@ const Navbar = () => {
                     <div className={classes.list}>
                             <Link href="">About Us</Link>
                             <Link href="">Contact Us</Link>
-                            <Link href="">Find Salons</Link>
+                            <Link href="/find-salons">Find Salons</Link>
                     </div>
             </div>
             <div className={classes.nav__secondDiv}>
-                    <Link href="" >Login</Link>
-                    <Link href="" >Create Account</Link>
+                    <Link href="/login" >Login</Link>
+                    <Link href="/create-account" >Create Account</Link>
             </div>
             <div className={classes.hamburger}>
                  <BiMenuAltRight color='black' size={21}/>
