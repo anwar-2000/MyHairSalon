@@ -2,8 +2,11 @@ import React from 'react'
 import classes from "@/styles/navbar.module.css"
 import Link from 'next/link'
 import {BiMenuAltRight} from "react-icons/bi"
+import { getCurrentUser } from '@/utils/session'
 
-const Navbar = () => {
+const Navbar = async () => {
+        const session = await getCurrentUser();
+
   return <nav className={classes.navbar__container}>
             <div className={classes.nav__firstDiv}>
                     <div className={classes.logo}>
@@ -17,7 +20,7 @@ const Navbar = () => {
             </div>
             <div className={classes.nav__secondDiv}>
                     <Link href="/login" >Login</Link>
-                    <Link href="/create-account" >Create Account</Link>
+                   {session ? <Link href="/profile" >Profile</Link> : <Link href="/create-account" >Create Account</Link>}
             </div>
             <div className={classes.hamburger}>
                  <BiMenuAltRight color='black' size={21}/>

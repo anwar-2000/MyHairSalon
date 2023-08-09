@@ -1,37 +1,110 @@
-import {createMongoConnection} from "@/database/Conn"
-import { deleteUser, getUsers, postUser, updateUser } from "@/database/userControllers";
-import { NextApiRequest , NextApiResponse } from "next/types";
+import { createMongoConnection } from "@/database/Conn";
+import UserModel from "@/models/UserModel";
+import { NextResponse } from "next/server";
+import bcrypt from "bcrypt"
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+// This function is called once to establish the database connection
+export async function connectDatabase() {
 
-   // createMongoConnection().catch(()=>res.status(405).json({error : 'Error in the connection'}))
-   try {
+}
+
+// GET method
+export async function GET(req: Request) {
+  try {
     await createMongoConnection();
   } catch (err) {
-    res.status(500).json({ error: "Error in the connection" });
-    return;
+    throw new Error("Error in the database connection");
   }
-    const {method} = req
+  try {
+    const {searchParams} = new URL(req.url);
+    const userEmail = searchParams.get("userEmail");
+    const page  = searchParams.get("page") as unknown as number  || 1;
+    const limit  = searchParams.get("limit") as unknown as number  || 50;
+    console.log(userEmail ,page , limit)
+    let users;
+  
+    if (userEmail) {
+      // Fetch user data by email
+      users = await UserModel.find({ email: userEmail });
+    } else {
+      if(page && limit) {
+      const skip: number = (page - 1)  * limit ;
+      users = await UserModel.find({}).skip(skip).limit(limit);
+    }
+    }   
+    if (!users) {
+      return NextResponse.json({ error: "User Not Found" });
+    }
+    return  NextResponse.json(users);
+  } catch (error) {
+    console.error(error);
+    NextResponse.json({ error });
+  }
+}
 
-    switch(method){
-      case 'GET' : 
-      getUsers(req,res)
-      break;
-          //res.status(200).json({method,name:'GET RESPONSE'});break;
-      case 'POST' :
-      postUser(req,res)
-       // res.status(200).json({method,name:'POST RESPONSE'});
-        break;
-      case 'PUT' :
-        updateUser(req,res)
-         // res.status(200).json({method,name:'PUT RESPONSE'});
-         break;
-      case 'DELETE' :
-        deleteUser(req,res);
-           // res.status(200).json({method,name:'DELETE RESPONSE'});
-            break;
-      default :
-            res.setHeader('Allow',['GET','POST','PUT','DELETE'])
-            res.status(405).end(`Method ${method} is not ALLOWED`)
-            break;
-          }}
+// POST method
+export async function POST(req: Request) {
+  try {
+    await createMongoConnection();
+  } catch (err) {
+    throw new Error("Error in the database connection");
+  }
+  try {
+    const body = await req.json();
+    //@ts-ignore
+    const {password} = body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    //@ts-ignore
+    body.password = hashedPassword; // Updating the password of user by the crypted one
+    const newUser = await UserModel.create(body);
+    return  NextResponse.json({'USER CREATED ' : newUser});
+  } catch (error) {
+    console.error(error);
+    return  NextResponse.json({error});
+  }
+}
+
+// PUT method
+export async function PUT(req: Request) {
+  try {
+    await createMongoConnection();
+  } catch (err) {
+    throw new Error("Error in the database connection");
+  }
+  try {
+    const {searchParams} = new URL(req.url);
+    const userId = searchParams.get("userId");
+
+    const formData = req.body;
+
+    if(userId && formData){
+      const user = await UserModel.findByIdAndUpdate(userId,formData)
+      return  NextResponse.json({"product Modified" : user})
+    }
+    return  NextResponse.json({error : "user Not Selected"})
+  } catch (err) {
+      return  NextResponse.json({ err });
+  }
+}
+
+// DELETE method
+export async function DELETE(req: Request) {
+  try {
+    await createMongoConnection();
+  } catch (err) {
+    throw new Error("Error in the database connection");
+  }
+  try {
+    const {searchParams} = new URL(req.url);
+    const userId = searchParams.get("userId");
+
+     const deletedUser = await UserModel.findByIdAndDelete(userId);
+
+     if(!deletedUser){
+             return  NextResponse.json({error : 'error deleting user'})
+     }
+     return  NextResponse.json({'USER Deleted' : deletedUser})
+ }catch(error){
+    return  NextResponse.json( {'ERROR ' : error})
+ }
+}

@@ -36,3 +36,12 @@
     align-items: center;
     justify-content: center;
 }
+
+@media screen and (max-width : 720px) {
+    .input__container {
+        transform: translateX(0.3rem);
+    }
+    .input__container input {
+        width : 210px;
+    }
+}

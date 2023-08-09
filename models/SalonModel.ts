@@ -4,6 +4,7 @@ interface SalonPattern {
     name : string;
     owner : string;
     subscription : string;
+    image : string;
     haircuts : [string];
     artists : [{
         name : string , image : string,
@@ -13,6 +14,7 @@ interface SalonPattern {
 const  SalonSchema : Schema<SalonPattern> = new Schema({
     name: { type: String, required: true },
     owner: { type: String, required: true },
+    image: { type: String, required: true },
     subscription: { type: String, required: true , default : "inactive"},
     haircuts : [{type: String}],
     artists : [{

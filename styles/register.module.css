@@ -28,4 +28,12 @@
 .register__container select{
     background : none;
     padding: 0.9rem;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+@media screen and (max-width : 720px) {
+    .register__container input {
+        width : 250px;
+    }
 }

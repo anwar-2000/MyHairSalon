@@ -6,7 +6,7 @@
     align-items: start;
     justify-content: center;
     flex-direction: column;
-    transform: translateY(-4rem);
+    transform: translateY(3rem);
 }
 
 .hero__first h1{
@@ -43,7 +43,7 @@
 
 @media screen and (max-width : 720px) {
     .hero__container{
-        transform: translateY(-12rem);
+        transform: translateY(-6rem);
     }
     .hero__first h1{
         font-size: 1.5rem;

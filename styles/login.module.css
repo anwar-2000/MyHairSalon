@@ -25,3 +25,9 @@
     background-color: black;
     cursor: pointer;
 }
+
+@media screen and (max-width : 720px) {
+    .login__container input {
+        width : 250px;
+    }
+}
