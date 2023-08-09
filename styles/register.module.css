@@ -1,0 +1,31 @@
+.register__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap : 2.2rem;
+    width: 450px;
+    height : auto;
+    padding: 2rem 0rem;
+}
+.register__container input {
+    padding: 1rem 6rem;
+    padding-left: 0.6rem;
+    border-radius: 5px;
+    width : 450px;
+    border: 1px solid black;
+}
+.register__container button {
+    padding: 0.6rem 3rem;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-family: 'Popins' , sans-serif;
+    font-weight: bold;
+    color : white;
+    background-color: black;
+    cursor: pointer;
+}
+.register__container select{
+    background : none;
+    padding: 0.9rem;
+}

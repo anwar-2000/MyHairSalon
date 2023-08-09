@@ -14,9 +14,9 @@ const  SalonSchema : Schema<SalonPattern> = new Schema({
     name: { type: String, required: true },
     owner: { type: String, required: true },
     subscription: { type: String, required: true , default : "inactive"},
-    haircuts : [{ type: String, required: true }],
+    haircuts : [{type: String}],
     artists : [{
-        name: { type: String, required: true },
+        name: { type: String },
         image: { type: String }
     }]
 });
