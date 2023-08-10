@@ -3,13 +3,11 @@ import { redirect } from 'next/navigation'
 import React, { Suspense } from 'react'
 
 import classes from "@/styles/pages/profile.module.css"
-import MyArtists from '@/Components/MyArtists'
 import { fetchUser } from '@/utils/userHelpers'
-import PersonalInfo from '@/Components/PersonalInfo'
 import LogOutButton from '@/Components/UI/LogOutButton'
+import ProfileMain from '@/Components/ProfileMain'
+import { fetchSalonOwner } from '@/utils/salonHelpers'
 
-
-interface Props {}
 
 const Index = async () => {
   const session = await getCurrentUser();
@@ -18,32 +16,20 @@ const Index = async () => {
   }
   const user = await fetchUser(session?.user?.email!);
   //console.log(user)
-  //const salonName = "Salon Name"; // Replace later with the actual salon name from DB if he has a salon
+  let salon = null;
+  if(user[0].role === "salonOwner"){
+      salon = await fetchSalonOwner(user[0].email);
 
   return <div className={classes.profile__container}>
       <div className="infos">
         <Suspense fallback={<p>Loading feed...</p>}>
-          <small>{user[0].username} | {user[0].role} | {user[0].role === "salonOwner" &&  "Salon name if he have" }</small>
+          <small>{user[0].username} | {user[0].role} | {salon[0].name}</small>
           <h1>{user[0].email}</h1>
         </Suspense>
     </div>
-    <div className={classes.mysalon__container}>
-          <div className={classes.choices}>
-                <ul>
-                  <li>Personal Infos</li>
-                  <li>MY Salon</li>
-                  <li>MY Artists</li>
-                  <li>MY Appoitments</li>
-                </ul>
-          </div>
-          <div className={classes.main__container}>
-          <PersonalInfo username={user[0].username} email={user[0].email} role={user[0].role} />
-          {/*<MyArtists />*/}
-          </div>
-          
-    </div>
-       <LogOutButton />
+    <LogOutButton />
+    <ProfileMain user={user} salon={salon[0]}/> 
     </div>
 }
-
+}
 export default Index

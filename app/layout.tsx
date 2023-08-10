@@ -2,8 +2,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import Navbar from '@/Components/UI/Navbar'
 import Footer from '@/Components/UI/Footer'
-import Head from 'next/head'
 import { ToastContainer } from 'react-toastify'
+import { Providers } from '@/redux/Provider'
 
 
 export const metadata: Metadata = {
@@ -18,10 +18,9 @@ export default function RootLayout({
 }) {
   return <>
     <html lang="en">
-      <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
-      <body>  
+      <body>
+        <Providers>
+         
       <ToastContainer
               position="top-right"
               autoClose={5000}
@@ -34,9 +33,11 @@ export default function RootLayout({
               pauseOnHover
               theme="light"
         />
+        {/**@ts-ignore */}
         <Navbar />
         {children}
         <Footer />
+        </Providers>
         </body>
     </html>
     </>

@@ -3,7 +3,6 @@ import React from 'react'
 import classes from "@/styles/pages/profile.module.css"
 import { signOut } from 'next-auth/react'
 import { redirect } from 'next/navigation'
-interface Props {}
 
 const LogOutButton = () => {
     const handleLogout = () =>{

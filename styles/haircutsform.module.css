@@ -1,0 +1,29 @@
+.haircutForm__container{
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 650px;;
+}
+.inputs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    flex-wrap: wrap;
+}
+.inputs input {
+    padding: 0.9rem 1.5rem;
+    background: none;
+    border: solid black 1px;
+}
+
+.inputs button{
+    background-color: black;
+    color : white;
+    padding: 1rem ;
+    border : none;
+    border-radius: 5px;
+    cursor: pointer;
+}

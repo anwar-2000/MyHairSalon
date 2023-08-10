@@ -20,7 +20,7 @@ export async function GET(req: Request) {
     const userEmail = searchParams.get("userEmail");
     const page  = searchParams.get("page") as unknown as number  || 1;
     const limit  = searchParams.get("limit") as unknown as number  || 50;
-    console.log(userEmail ,page , limit)
+    //console.log(userEmail ,page , limit)
     let users;
   
     if (userEmail) {
@@ -73,15 +73,16 @@ export async function PUT(req: Request) {
   }
   try {
     const {searchParams} = new URL(req.url);
-    const userId = searchParams.get("userId");
+    const userEmail = searchParams.get("userEmail");
+    console.log(userEmail)
+    const formData = await req.json();
 
-    const formData = req.body;
-
-    if(userId && formData){
-      const user = await UserModel.findByIdAndUpdate(userId,formData)
-      return  NextResponse.json({"product Modified" : user})
+    if(userEmail && formData){
+      console.log(formData);
+      const user = await UserModel.findOneAndUpdate({email : userEmail},formData)
+      return  NextResponse.json({"user Modified" : user});
     }
-    return  NextResponse.json({error : "user Not Selected"})
+    return  NextResponse.json({error : "user Not Selected"});
   } catch (err) {
       return  NextResponse.json({ err });
   }

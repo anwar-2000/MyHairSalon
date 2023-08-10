@@ -1,4 +1,3 @@
-import { createMongoConnection } from "@/database/Conn";
 import SalonModel from '@/models/SalonModel';
 import { NextResponse } from "next/server";
 
@@ -6,30 +5,37 @@ import { NextResponse } from "next/server";
 // GET method
 export async function GET(req: Request) {
   try {
-    await createMongoConnection();
-  } catch (err) {
-    throw new Error("Error in the MONGODB connection");
-  }
-  try {
     const {searchParams} = new URL(req.url);
     const salonName = searchParams.get("salon");
     const page  = searchParams.get("page") as unknown as number  || 1;
     const limit  = searchParams.get("limit") as unknown as number  || 50;
-    let users;
-  
-    if (salonName) {
-      // Fetch user data by email
-      users = await SalonModel.find({ name: salonName });
-    } else {
+    let salons;
+
+    const country = searchParams.get("Country");
+    const place = searchParams.get("Place");
+    
+    const ownerEmail = searchParams.get("owner");
+    if(ownerEmail){
+      // Fetch salon by email
+      salons = await SalonModel.find({ owner: ownerEmail });
+    }
+    else if(salonName) {
+      // Fetch salon by email
+      salons = await SalonModel.find({ name: salonName });
+    } else if(country && place) {
+      // Fetch salon by email
+      salons = await SalonModel.find({ country: salonName , place : place });
+    }
+    else {
       if(page && limit) {
       const skip: number = (page - 1)  * limit ;
-      users = await SalonModel.find({}).skip(skip).limit(limit);
+      salons = await SalonModel.find({}).skip(skip).limit(limit);
     }
     }   
-    if (!users) {
+    if (!salons) {
       return NextResponse.json({ message: "Salon Not Found" });
     }
-    return  NextResponse.json(users);
+    return  NextResponse.json(salons);
   } catch (error) {
     console.error(error);
     NextResponse.json({ error });
@@ -39,14 +45,7 @@ export async function GET(req: Request) {
 // POST method
 export async function POST(req: Request) {
   try {
-    await createMongoConnection();
-  } catch (err) {
-    throw new Error("Error in the database connection");
-  }
-  try {
     const body = await req.json();
-    //@ts-ignore
-    body.password = hashedPassword; // Updating the password of user by the crypted one
     const newSalon = await SalonModel.create(body);
     return  NextResponse.json({'Salon CREATED ' : newSalon});
   } catch (error) {
@@ -58,20 +57,15 @@ export async function POST(req: Request) {
 // PUT method
 export async function PUT(req: Request) {
   try {
-    await createMongoConnection();
-  } catch (err) {
-    throw new Error("Error in the database connection");
-  }
-  try {
     const {searchParams} = new URL(req.url);
-    const salonId = searchParams.get("salonId");
+    const owner = searchParams.get("owner");
     const formData = req.body;
 
-    if(salonId && formData){
-      const user = await SalonModel.findByIdAndUpdate(salonId,formData)
-      return  NextResponse.json({"Salon Modified" : user})
+    if(owner && formData){
+      const salon = await SalonModel.findOneAndUpdate({owner : owner},formData)
+      return  NextResponse.json({"Salon Modified" : salon})
     }
-    return  NextResponse.json({error : "Salon Not Selected"});
+    return  NextResponse.json({error : "Salon Not Found"});
   } catch (err) {
       return  NextResponse.json({ err });
   }
@@ -80,18 +74,13 @@ export async function PUT(req: Request) {
 // DELETE method
 export async function DELETE(req: Request) {
   try {
-    await createMongoConnection();
-  } catch (err) {
-    throw new Error("Error in the database connection");
-  }
-  try {
     const {searchParams} = new URL(req.url);
-    const salonId = searchParams.get("salonId");
+    const owner = searchParams.get("owner");
 
-     const deletedSalon = await SalonModel.findByIdAndDelete(salonId);
+     const deletedSalon = await SalonModel.findOneAndDelete({owner : owner});
 
      if(!deletedSalon){
-             return  NextResponse.json({error : 'error deleting Salon'})
+             return  NextResponse.json({error : `error deleting Salon of ${owner}`})
      }
      return  NextResponse.json({'Salon Deleted' : deletedSalon})
  }catch(error){

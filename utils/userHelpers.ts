@@ -36,14 +36,14 @@ export const addUser = async (formData: any) => {
  }
 
   //updating a new book
-export const updateUser = async (userId : string ,formData:Object) =>{
+export const updateUser = async (userEmail : string ,formData:Object) =>{
     try {
         const options = {
             method : "PUT",
             headers :{ "Content-Type" : "application/json"},
             body : JSON.stringify(formData)
         }
-        const response = await fetch(`${URL}/api/accounts?userId=${userId}`,options)
+        const response = await fetch(`${URL}/api/accounts?userEmail=${userEmail}`,options)
         const data = await response.json()
 
         return data

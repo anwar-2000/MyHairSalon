@@ -1,6 +1,9 @@
-import React from 'react'
+"use client"
+
+import React, { useState } from 'react'
 import classes from "@/styles/personalInfo.module.css"
 import {AiFillEdit} from "react-icons/ai"
+import { updateUser } from '@/utils/userHelpers';
 interface Props {
     username : string;
     email : string;
@@ -8,23 +11,52 @@ interface Props {
 }
 
 const PersonalInfo:React.FC<Props> = ({username , role , email}) => {
-  return <div className={classes.personalinfo__container}>
+
+    const [updatedEmail, setupdatedEmail] = useState(email)
+    const [updatedusername, setupdatedUsername] = useState(username)
+    const [updatedRole, setupdatedRole] = useState(role)
+
+    async function EditPersonalInfos(e : any , email : string) {
+        e.preventDefault();
+
+
+        let formData = {
+            username : updatedusername,
+            email : updatedEmail,
+            role : updatedRole,
+        }
+        //console.log(formData)
+        let updatedUser = await updateUser(email,formData);
+
+        if(updatedUser){
+            //console.log(updatedUser);
+        }
+      }
+
+  return <form onSubmit={(e)=>EditPersonalInfos(e,email)}>
+        <div className={classes.personalinfo__container}>
         <div className={classes.item}>
-            <input value={username} />
+            <input defaultValue={username} onChange={(e)=>setupdatedUsername(e.target.value)}/>
+            <AiFillEdit color='black' size={20}/>
+        </div>
+        <div className={classes.item} >
+            <select onChange={(e)=>setupdatedRole(e.target.value)} defaultValue={role}>
+            <option value="customer">Customer</option>
+            <option value="salonOwner">Salon Owner</option>
+            </select>
             <AiFillEdit color='black' size={20}/>
         </div>
         <div className={classes.item}>
-            <input value={role} />
+            <input defaultValue={email} onChange={(e)=>setupdatedEmail(e.target.value)}/>
             <AiFillEdit color='black' size={20}/>
         </div>
-        <div className={classes.item}>
-            <input value={email} />
-            <AiFillEdit color='black' size={20}/>
-        </div>
-        <button>
+        <button >
             SAVE
         </button>
-  </div>
+        </div>
+  </form>
+ 
+ 
 }
 
 export default PersonalInfo

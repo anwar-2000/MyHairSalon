@@ -1,10 +1,10 @@
-.personalinfo__container{
+.saloninfo__container{
     width: 700px;
     height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 1rem;
 }
  .item {
@@ -19,13 +19,6 @@
     border: solid black 1px;
 }
 
-.item select {
-    padding: 1rem 0rem;
-    width: 270px;
-    background: none;
-    border: solid black 1px;
-}
-
 .personalinfo__container button {
     padding: 1rem 2.2rem;
     background-color: rgb(21, 53, 160);
@@ -34,4 +27,23 @@
     border: none;
     border-radius: 10px;
     transform: translateX(-0.8rem);
+}
+.haircuts ul{
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.button{
+    padding : 1rem 4rem;
+    border : none;cursor: pointer;
+    border-radius: 9px;
+    transform: translateX(-1rem);
+    background-color: rgb(115, 194, 194);
+}
+.saloninfo__container img{
+    width : 250px;
+    height : 100px;
 }

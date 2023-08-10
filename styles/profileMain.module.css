@@ -1,11 +1,12 @@
-.profile__container{
+.mysalon__container{
+    width: 800px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    margin-top : 2rem;
-    min-height: 100vh;
+    justify-content: center;
     flex-direction: column;
 }
+
+
 .choices{
     width: 700px;
     background-color: rgb(19, 18, 18);
@@ -41,14 +42,4 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.logout{
-    margin-top: 2rem;
-    padding : 0.5rem 4rem;
-    background-color: crimson;
-    border : none;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
 }
