@@ -3,10 +3,14 @@ const URL = isProduction
   ? process.env.NEXT_PUBLIC_HOST_URL 
   : process.env.NEXT_PUBLIC_LOCAL_URL; 
 
-export const fetchSalons = async (page = 1, limit = 30) => {
-    const response = await fetch(`${URL}/api/salons?page=${page}&limit=${limit}`);
-    const data = await response.json();
-    return data;
+  export const fetchSalons = async (page = 1, limit = 30) => {
+    try {
+      const response = await fetch(`${URL}/api/salons?page=${page}&limit=${limit}`);
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching salons:', error);
+      throw error;
+    }
   };
 
   export const fetchSalonOwner= async (ownerEmail : string) => {

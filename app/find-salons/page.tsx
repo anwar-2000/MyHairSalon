@@ -5,6 +5,7 @@ interface Props {}
 
 const Index = () => {
   return <div>
+    {/**@ts-ignore */}
     <SearchSalonsWithLocations />
   </div>
 }

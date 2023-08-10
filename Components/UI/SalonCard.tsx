@@ -1,14 +1,18 @@
+"use client"
 import React from 'react'
 import classes from "@/styles/salonCard.module.css"
-interface Props {}
+import { useRouter } from 'next/navigation'
 
-const SalonCard = () => {
-  return <div className={classes.salonCard__container}>
+
+
+const SalonCard = ({salon} : any) => {
+  const router = useRouter()
+  return <div className={classes.salonCard__container} onClick={()=>router.push(`/salons/${salon.name}`)} >
         <div className="image">
-                <p>IMG</p>
+                <img src={salon.image} className={classes.imageEl} />
         </div>
         <div className={classes.infos}>
-            <h1>Salon Homme</h1>
+            <h1>{salon.name}</h1>
             <div className={classes.details}>
               <p>5 Artists</p>
               <p>20 Haircuts</p>

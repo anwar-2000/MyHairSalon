@@ -16,21 +16,20 @@ export async function GET(req: Request) {
     
     const ownerEmail = searchParams.get("owner");
     if(ownerEmail){
-      // Fetch salon by email
       salons = await SalonModel.find({ owner: ownerEmail });
     }
     else if(salonName) {
-      // Fetch salon by email
+     
       salons = await SalonModel.find({ name: salonName });
     } else if(country && place) {
-      // Fetch salon by email
+
       salons = await SalonModel.find({ country: salonName , place : place });
     }
-    else {
-      if(page && limit) {
+    else if(page && limit) {
+     // console.log("here",page,limit)
       const skip: number = (page - 1)  * limit ;
       salons = await SalonModel.find({}).skip(skip).limit(limit);
-    }
+      //console.log("here",salons)
     }   
     if (!salons) {
       return NextResponse.json({ message: "Salon Not Found" });
@@ -60,7 +59,7 @@ export async function PUT(req: Request) {
     const {searchParams} = new URL(req.url);
     const owner = searchParams.get("owner");
     const formData = await req.json();
-    console.log(formData)
+   // console.log(formData)
     if(owner && formData){
       const salon = await SalonModel.findOneAndUpdate({owner : owner},formData)
       return  NextResponse.json({"Salon Modified" : salon})

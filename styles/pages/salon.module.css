@@ -1,0 +1,54 @@
+.main__container{
+    padding-top : 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+
+}
+.image__salon{
+    width: 80%;
+    height: 250px;
+    position: relative;
+}
+.image__salon img{
+    border-radius: 20px;
+}
+
+.infos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.haircuts__artists{
+    width: 90%;
+    transform: translateX(1.8rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+}
+.artists , .haircuts{
+    width: 50%;
+    display: grid;
+    place-items: center;
+}
+
+.artists{
+    border-right: 1px solid black;
+}
+.appintments{
+    padding-top: 2.5rem;
+}
+.appintments button{
+    padding: 1rem 6rem;
+    background-color: rgb(255, 255, 255);
+    color :rgb(0, 0, 0);
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins' , sans-serif;
+}

@@ -18,13 +18,17 @@
 }
 .salonCard__container .image{
     width : 100px;
-    height : 250px;
+    height : 120px;
     display: flex;
     align-items: center;
     justify-content: center;
     border : solid 1px blue;
-    position: relative;
 }
+.imageEl{
+    width : 320px;
+    height: 151px;
+}
+
 .infos{    
         display: flex;
         flex-direction: column;
