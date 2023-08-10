@@ -7,11 +7,6 @@ import bcrypt from "bcrypt"
 // GET method
 export async function GET(req: Request) {
   try {
-    await createMongoConnection();
-  } catch (err) {
-    throw new Error("Error in the database connection");
-  }
-  try {
     const {searchParams} = new URL(req.url);
     const userEmail = searchParams.get("userEmail");
     const page  = searchParams.get("page") as unknown as number  || 1;
@@ -40,11 +35,7 @@ export async function GET(req: Request) {
 
 // POST method
 export async function POST(req: Request) {
-  try {
-    await createMongoConnection();
-  } catch (err) {
-    throw new Error("Error in the database connection");
-  }
+  
   try {
     const body = await req.json();
     //@ts-ignore
@@ -62,11 +53,6 @@ export async function POST(req: Request) {
 
 // PUT method
 export async function PUT(req: Request) {
-  try {
-    await createMongoConnection();
-  } catch (err) {
-    throw new Error("Error in the database connection");
-  }
   try {
     const {searchParams} = new URL(req.url);
     const userEmail = searchParams.get("userEmail");

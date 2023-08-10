@@ -7,7 +7,10 @@ const URL = isProduction
   export const fetchSalons = async (page = 1, limit = 30) => {
     try {
       const response = await fetch(`${URL}/api/salons?page=${page}&limit=${limit}`);
-      return await response.json();
+      //console.log(response)
+      const data = await response.json();
+      //console.log(JSON.parse(data))
+      return JSON.parse(data);
     } catch (error) {
       console.error('Error fetching salons:', error);
       throw error;
