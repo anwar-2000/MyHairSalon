@@ -1,15 +1,20 @@
 import React from 'react'
 import classes from "@/styles/artistCard.module.css"
 
-interface Props {}
+interface Props {
+  artist : {
+    name : string;
+    price : number;
+  }
+}
 
-const ArtistCard = () => {
+const ArtistCard:React.FC<Props> = ({artist}) => {
   return <div className={classes.artistCard__container}>
         <div className='image'>
-            IMG
+            {artist.name}
         </div>
         <div className='infos'>
-            <h3>John Doe</h3>
+            <h4>{artist.price} €</h4>
         </div>
   </div>
 }

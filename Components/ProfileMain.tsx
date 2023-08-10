@@ -28,9 +28,9 @@ const ProfileMain = ({user , salon } : any) => {
 
   { choice === "personal Info" && <PersonalInfo username={user[0]?.username} email={user[0]?.email} role={user[0]?.role} />}
   { choice === "my Salon" && <>
-      <SalonInfo address={salon.address} name={salon.name} description={salon.description} owner={user[0].email} country={salon.country} place={salon.place} image={salon.image} haircuts={salon.haircuts} />
+      <SalonInfo address={salon?.address} name={salon?.name} description={salon?.description} owner={user[0].email} country={salon?.country} place={salon?.place} image={salon?.image} haircuts={salon?.haircuts} />
   </> }
-  { choice === "my Artists" &&  <MyArtists /> }
+  { choice === "my Artists" &&  <MyArtists owner={user[0]?.email} artists={salon?.artists}/> }
   
   </div>
   

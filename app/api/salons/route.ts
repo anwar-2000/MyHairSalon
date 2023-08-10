@@ -59,8 +59,8 @@ export async function PUT(req: Request) {
   try {
     const {searchParams} = new URL(req.url);
     const owner = searchParams.get("owner");
-    const formData = req.body;
-
+    const formData = await req.json();
+    console.log(formData)
     if(owner && formData){
       const salon = await SalonModel.findOneAndUpdate({owner : owner},formData)
       return  NextResponse.json({"Salon Modified" : salon})

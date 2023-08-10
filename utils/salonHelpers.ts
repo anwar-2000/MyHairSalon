@@ -32,7 +32,7 @@ const uplaodImage = async (imagePath : string) => {
           method : 'POST',
           body : JSON.stringify({path : imagePath})
       })
-      console.log(response)
+      //console.log(response)
       return response.json()
   } catch (error) {
     throw error
@@ -40,7 +40,7 @@ const uplaodImage = async (imagePath : string) => {
   }
 export const addSalon = async (ownerEmail : string ,formData: any) => {
     const imageUrl = await uplaodImage(formData.image);
-    console.log(formData)
+   // console.log(formData)
     try {
         const options = {
             method : "POST",
@@ -59,6 +59,7 @@ export const addSalon = async (ownerEmail : string ,formData: any) => {
 
   //updating a new book
 export const updateSalon = async (owner : string ,formData:Object) =>{
+    console.log(owner,formData);
     try {
         const options = {
             method : "PUT",

@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-
+"use client"
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import classes from "@/styles/haircutsform.module.css"
+
 interface Haircut {
   name: string;
   price: string;
 }
-
-const HaircutsForm: React.FC = () => {
-  const [haircuts, setHaircuts] = useState<Haircut[]>([]);
+interface Props {
+    addHaircut : Dispatch<SetStateAction<Haircut[]>>,
+    haircuts : Haircut[]
+}
+const HaircutsForm: React.FC<Props> = ({haircuts , addHaircut}) => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
 
@@ -16,13 +19,13 @@ const HaircutsForm: React.FC = () => {
     if(name==="" || price===""){
         return;
     }
-    setHaircuts([...haircuts, { name, price }]);
+     haircuts ? addHaircut([...haircuts, { name, price }]) : addHaircut([{ name, price }])  ;
     setName('');
     setPrice('');
   };
 
   return (
-    <div className={classes.haircutForm__container}>
+<div className={classes.haircutForm__container}>
         <div className={classes.inputs}>
         <input
         type="text"
@@ -36,13 +39,13 @@ const HaircutsForm: React.FC = () => {
         value={price}
         onChange={e => setPrice(e.target.value)}
       />
-        <button onClick={handleAdd}>Add</button>
+        <button type="button" onClick={handleAdd}>Add</button>
 </div>
       
       <ul>
-        {haircuts.map((haircut, index) => (
+        {haircuts && haircuts.map((haircut, index) => (
           <li key={index}>
-            {haircut.name} - {haircut.price}
+            {haircut.name} - {haircut.price} €
           </li>
         ))}
       </ul>

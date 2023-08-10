@@ -5,6 +5,7 @@ import classes from "@/styles/salonInfo.module.css"
 import {AiFillEdit} from "react-icons/ai"
 import { addSalon, updateSalon } from '@/utils/salonHelpers';
 import HaircutsForm from './HaircutsForm';
+
 interface Props {
     name : string;
     description : string;
@@ -14,8 +15,12 @@ interface Props {
     place : string;
     image : string;
     haircuts : any[];
-
 }
+
+interface Haircut {
+    name: string;
+    price: string;
+  }
 
 const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,haircuts,description}) => {
 
@@ -25,8 +30,7 @@ const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,hairc
     const [updatedAddress, setupdatedAddress] = useState(address)
     const [updatedPlace, setupdatedPlace] = useState(place);
     const [updatedImage, setupdatedImage] = useState(image);
-
-    const [updatedHaircuts, setupdatedHaircuts] = useState(haircuts);
+    const [Newhaircuts, setNewHaircuts] = useState<Haircut[]>(haircuts);
 
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -63,15 +67,18 @@ const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,hairc
             place : updatedPlace,
             address : updatedAddress,
             image : updatedImage,
-            haircuts : updatedHaircuts
+            haircuts : Newhaircuts
         }
-        console.log(formData)
+       // console.log(formData)
+        let updatedSalon = null;
         if(formData && !name){
-        let updatedUser = await addSalon(email,formData);
-
-        if(updatedUser){
-        console.log(updatedUser);
-        }}
+        updatedSalon = await addSalon(email,formData);
+        }else if (formData && name){
+        updatedSalon = await updateSalon(email,formData);
+        }
+        if(updatedSalon){
+            //console.log(updatedSalon);  
+        }
       }
 
   return <form onSubmit={(e)=>EditPersonalInfos(e,owner)}>
@@ -102,9 +109,9 @@ const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,hairc
         </div>}
         {image && <img src={image} alt="" width={350} height={50}/>}
         <div>
-                <HaircutsForm />
+                <HaircutsForm addHaircut={setNewHaircuts} haircuts={Newhaircuts} />
         </div>
-        <button className={classes.button}>
+        <button type='submit' className={classes.button}>
             SAVE
         </button>
         </div>

@@ -23,7 +23,7 @@ const Index = async () => {
   return <div className={classes.profile__container}>
       <div className="infos">
         <Suspense fallback={<p>Loading feed...</p>}>
-          <small>{user[0].username} | {user[0].role} | {salon[0].name}</small>
+          <small>{user[0].username} | {user[0].role} | {salon[0]?.name}</small>
           <h1>{user[0].email}</h1>
         </Suspense>
     </div>

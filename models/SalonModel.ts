@@ -9,7 +9,9 @@ interface SalonPattern {
     place : string;
     country : string;
     image : string;
-    haircuts : [string];
+    haircuts :  [{
+        name : string , price : number,
+    }];
     artists : [{
         name : string , price : number,
     }]
@@ -24,12 +26,15 @@ const  SalonSchema : Schema<SalonPattern> = new Schema({
     country : { type: String, required: true },
     image: { type: String, required: true },
     subscription: { type: String, required: true , default : "inactive"},
-    haircuts : [{type: String}],
+    haircuts :  [{
+        name: { type: String },
+        price: { type: Number }
+    }],
     artists : [{
         name: { type: String },
         price: { type: Number }
     }]
 });
 
-const Salon = models.Salon || model('Salon',SalonSchema)
-export default Salon
+const AllSalon = models.AllSalon || model('AllSalon',SalonSchema)
+export default AllSalon
