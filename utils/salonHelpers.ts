@@ -4,18 +4,21 @@ const URL = isProduction
   : process.env.NEXT_PUBLIC_LOCAL_URL; 
 
 //let URL = "http://localhost:3000"
-  export const fetchSalons = async (page = 1, limit = 30) => {
-    try {
-      const response = await fetch(`${URL}/api/salons?page=${page}&limit=${limit}`);
-      //console.log(response)
-      const data = await response.json();
-      //console.log(JSON.parse(data))
-      return JSON.parse(data);
-    } catch (error) {
-      console.error('Error fetching salons:', error);
-      throw error;
+
+export const fetchSalons = async (page = 1, limit = 30) => {
+  try {
+    const response = await fetch(`${URL}/api/salons?page=${page}&limit=${limit}`);
+    if (!response.ok) {
+      throw new Error(`An error occurred: ${response.statusText}`);
     }
-  };
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching salons:', error);
+    throw error;
+  }
+};
+
 
   export const fetchSalonOwner= async (ownerEmail : string) => {
     const response = await fetch(`${URL}/api/salons?owner=${ownerEmail}`);

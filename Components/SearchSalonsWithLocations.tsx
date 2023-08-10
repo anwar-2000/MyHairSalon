@@ -1,32 +1,36 @@
-import React from 'react'
-import classes from "@/styles/searchwithLocation.module.css"
-import {MdGpsFixed} from "react-icons/md"
-import SalonCard from './UI/SalonCard'
-import { fetchSalons } from '@/utils/salonHelpers'
+"use client"
 
-interface Props {}
+import React, { useState, useEffect } from 'react';
+import classes from "@/styles/searchwithLocation.module.css";
+import { MdGpsFixed } from "react-icons/md";
+import SalonCard from './UI/SalonCard';
+import { fetchSalons } from '@/utils/salonHelpers';
 
-const SearchSalonsWithLocations = async () => {
-   /**
-    * 
-    * GETTING THE CITY NAME USING GEO LOCALISATION API OF GOOGLE REQUIIER PAYMENTS ... i'll pay once i can get money from this project , then implement it
-    *  */ 
-    const salons = await fetchSalons();
-    console.log(salons)
+const SearchSalonsWithLocations = () => {
+  const [salons, setSalons] = useState([]);
 
-  return <div className={classes.searchLocation__container}>
-    <div className={classes.input__container}>
-         <input placeholder='place ...'/>
-         <MdGpsFixed color='black' size={25} />
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchSalons();
+      setSalons(data);
+    };
+    fetchData();
+  }, []);
+
+  return (
+    <div className={classes.searchLocation__container}>
+      <div className={classes.input__container}>
+        <input placeholder="place ..." />
+        <MdGpsFixed color="black" size={25} />
+      </div>
+
+      <div className={classes.items}>
+        {salons.map((salon: any, index: number) => (
+          <SalonCard salon={salon} key={index} />
+        ))}
+      </div>
     </div>
+  );
+};
 
-        <div className={classes.items}>
-         {salons && salons.map((salon : any, index : number) => (
-                 <SalonCard salon={salon} key={index} />
-         ))}
-        </div>
-
-  </div>
-}
-
-export default SearchSalonsWithLocations
+export default SearchSalonsWithLocations;

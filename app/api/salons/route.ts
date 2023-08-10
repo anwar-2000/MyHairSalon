@@ -34,7 +34,7 @@ export async function GET(req: Request) {
     if (!salons) {
       return NextResponse.json({ message: "Salon Not Found" });
     }
-    return  NextResponse.json(JSON.stringify(salons));
+    return  NextResponse.json(salons);
   } catch (error) {
     console.error(error);
     NextResponse.json({ error });
