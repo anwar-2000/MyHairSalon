@@ -3,6 +3,7 @@ const URL = isProduction
   ? process.env.NEXT_PUBLIC_HOST_URL 
   : process.env.NEXT_PUBLIC_LOCAL_URL; 
 
+//let URL = "http://localhost:3000"
   export const fetchSalons = async (page = 1, limit = 30) => {
     try {
       const response = await fetch(`${URL}/api/salons?page=${page}&limit=${limit}`);

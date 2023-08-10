@@ -3,10 +3,6 @@ import UserModel from "@/models/UserModel";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt"
 
-// This function is called once to establish the database connection
-export async function connectDatabase() {
-
-}
 
 // GET method
 export async function GET(req: Request) {
