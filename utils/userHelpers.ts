@@ -1,15 +1,15 @@
-//const URL="http://localhost:3000";
-const URL = "https://my-hair-salon-git-master-anwar-2000.vercel.app/"
+const URL="http://localhost:3000";
+//const URL = "https://my-hair-salon.vercel.app/"
 
 
 export const fetchUsers = async (page = 1, limit = 10) => {
-    const response = await fetch(`${URL}/api/accounts?page=${page}&limit=${limit}`);
+    const response = await fetch(`/api/accounts?page=${page}&limit=${limit}`);
     const data = await response.json();
     return data;
   };
 
   export const fetchUser= async (userEmail : string) => {
-    const response = await fetch(`${URL}/api/accounts?userEmail=${userEmail}`);
+    const response = await fetch(`/api/accounts?userEmail=${userEmail}`);
     const data = await response.json();
     return data;
   };
@@ -23,7 +23,7 @@ export const addUser = async (formData: any) => {
             body : JSON.stringify(formData)
         }
         
-        const response = await fetch(`${URL}/api/accounts`,options)
+        const response = await fetch(`/api/accounts`,options)
         const data = await response.json()
 
         return data
@@ -40,7 +40,7 @@ export const updateUser = async (userEmail : string ,formData:Object) =>{
             headers :{ "Content-Type" : "application/json"},
             body : JSON.stringify(formData)
         }
-        const response = await fetch(`${URL}/api/accounts?userEmail=${userEmail}`,options)
+        const response = await fetch(`/api/accounts?userEmail=${userEmail}`,options)
         const data = await response.json()
 
         return data
@@ -55,7 +55,7 @@ export const deleteUser = async (userId : string) =>{
             method : "DELETE",
             headers :{ "Content-Type" : "application/json"}
         }
-        const response = await fetch(`${URL}/api/accounts?userId=${userId}`,options)
+        const response = await fetch(`/api/accounts?userId=${userId}`,options)
         const data = await response.json()
 
         return data

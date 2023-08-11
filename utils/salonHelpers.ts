@@ -1,10 +1,10 @@
 
 //const URL="http://localhost:3000"
-const URL = "https://my-hair-salon-anwar-2000.vercel.app"
+//const URL = "https://my-hair-salon-anwar-2000.vercel.app"
 
 export const fetchSalons = async (page = 1, limit = 30) => {
   try {
-    const response = await fetch(`${URL}/api/salons?page=${page}&limit=${limit}`);
+    const response = await fetch(`/api/salons?page=${page}&limit=${limit}`);
     //const data = await response.json();
     //console.log(data);
    // console.log("here")
@@ -17,32 +17,35 @@ export const fetchSalons = async (page = 1, limit = 30) => {
 
 
   export const fetchSalonOwner= async (ownerEmail : string) => {
-    const response = await fetch(`${URL}/api/salons?owner=${ownerEmail}`);
+    const response = await fetch(`/api/salons?owner=${ownerEmail}`);
     const data = await response.json();
     return data;
   };
+
+
   export const fetchSalonByName= async (name : string) => {
     try {
-      const response = await fetch(`${URL}/api/salons?salon=${name}`);
+      const response = await fetch(`/api/salons?salon=${name}`);
+      console.log(response)
       const data = await response.json()
-      //console.log(data)
+      console.log(data)
       return data;
     } catch (error) {
       console.error('Error fetching salons:', error);
       throw error;
     }
-    
   };
 
+
   export const fetchSalonOfCountryAndPlace= async (country : string , place : string) => {
-    const response = await fetch(`${URL}/api/salons?country=${country}&place=${place}`);
+    const response = await fetch(`/api/salons?country=${country}&place=${place}`);
     const data = await response.json();
     return data;
   };
 
 const uplaodImage = async (imagePath : string) => {
     try {
-      const response = await fetch(`${URL}/api/upload`,{
+      const response = await fetch(`/api/upload`,{
           method : 'POST',
           body : JSON.stringify({path : imagePath})
       })
@@ -62,7 +65,7 @@ export const addSalon = async (ownerEmail : string ,formData: any) => {
             body : JSON.stringify({...formData, image: imageUrl.url})
         }
         
-        const response = await fetch(`${URL}/api/salons?owner=${ownerEmail}`,options)
+        const response = await fetch(`/api/salons?owner=${ownerEmail}`,options)
         const data = await response.json()
 
         return data
@@ -80,7 +83,7 @@ export const updateSalon = async (owner : string ,formData:Object) =>{
             headers :{ "Content-Type" : "application/json"},
             body : JSON.stringify(formData)
         }
-        const response = await fetch(`${URL}/api/salons?owner=${owner}`,options)
+        const response = await fetch(`/api/salons?owner=${owner}`,options)
         const data = await response.json()
 
         return data
@@ -95,7 +98,7 @@ export const deleteSalon = async (owner : string) =>{
             method : "DELETE",
             headers :{ "Content-Type" : "application/json"}
         }
-        const response = await fetch(`${URL}/api/salons?owner=${owner}`,options)
+        const response = await fetch(`/api/salons?owner=${owner}`,options)
         const data = await response.json()
 
         return data
