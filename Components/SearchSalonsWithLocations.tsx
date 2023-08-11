@@ -4,18 +4,14 @@ import React, { useState, useEffect } from 'react';
 import classes from "@/styles/searchwithLocation.module.css";
 import { MdGpsFixed } from "react-icons/md";
 import SalonCard from './UI/SalonCard';
-import { fetchSalons } from '@/utils/salonHelpers';
 
-const SearchSalonsWithLocations = () => {
-  const [salons, setSalons] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchSalons();
-      setSalons(data);
-    };
-    fetchData();
-  }, []);
+interface Props {
+  salons : any[]
+}
+const SearchSalonsWithLocations:React.FC<Props> = ({salons}) => {
+  const [filteredSalons, setSalons] = useState(salons);
+  //console.log(filteredSalons)
+  
 
   return (
     <div className={classes.searchLocation__container}>
@@ -25,7 +21,7 @@ const SearchSalonsWithLocations = () => {
       </div>
 
       <div className={classes.items}>
-        {salons.map((salon: any, index: number) => (
+        {filteredSalons.map((salon: any, index: number) => (
           <SalonCard salon={salon} key={index} />
         ))}
       </div>

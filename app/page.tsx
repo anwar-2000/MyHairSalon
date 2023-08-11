@@ -5,7 +5,7 @@ import { createMongoConnection } from '@/database/Conn'
 import styles from './page.module.css'
 
 export default async function Home() {
-  createMongoConnection();
+        createMongoConnection();
   return (
     <main className={styles.main}>
         <Hero />

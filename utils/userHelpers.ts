@@ -3,6 +3,8 @@ const URL = isProduction
   ? process.env.NEXT_PUBLIC_HOST_URL 
   : process.env.NEXT_PUBLIC_LOCAL_URL; 
 
+  console.log(isProduction,URL)
+  
 export const fetchUsers = async (page = 1, limit = 10) => {
     const response = await fetch(`${URL}/api/accounts?page=${page}&limit=${limit}`);
     const data = await response.json();

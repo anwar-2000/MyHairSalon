@@ -3,7 +3,7 @@ const URL = isProduction
   ? process.env.NEXT_PUBLIC_HOST_URL 
   : process.env.NEXT_PUBLIC_LOCAL_URL; 
 
-//let URL = "http://localhost:3000"
+  console.log(isProduction,URL)
 
 export const fetchSalons = async (page = 1, limit = 30) => {
   try {
