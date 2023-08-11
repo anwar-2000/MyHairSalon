@@ -1,5 +1,4 @@
-const URL="https://my-hair-salon.vercel.app";
-//const URL = "https://my-hair-salon.vercel.app/"
+const URL=process.env.NEXT_PUBLIC_API_URL;
 
 
 export const fetchUsers = async (page = 1, limit = 10) => {

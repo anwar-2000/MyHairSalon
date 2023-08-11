@@ -1,6 +1,5 @@
 
-const URL="https://my-hair-salon.vercel.app"
-//const URL = "https://my-hair-salon-anwar-2000.vercel.app"
+const URL=process.env.NEXT_PUBLIC_API_URL;
 
 export const fetchSalons = async (page = 1, limit = 30) => {
   try {
@@ -26,13 +25,11 @@ export const fetchSalons = async (page = 1, limit = 30) => {
   export const fetchSalonByName= async (name : string) => {
     try {
       const response = await fetch(`${URL}/api/salons?salon=${name}`);
-      console.log(response)
-      const data = await response.json()
-      console.log(data)
-      return data;
+      const responseData = await response.json(); // Log the raw response data
+      return responseData;
+
     } catch (error) {
-      console.error('Error fetching salons:', error);
-      throw error;
+      // ... error handling ...
     }
   };
 
