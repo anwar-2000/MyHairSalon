@@ -1,4 +1,4 @@
-const URL="http://localhost:3000";
+const URL="my-hair-salon.vercel.app";
 //const URL = "https://my-hair-salon.vercel.app/"
 
 
