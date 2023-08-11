@@ -1,14 +1,11 @@
-//const URL="http://localhost:3000"
-const URL="https://my-hair-salon.vercel.app"
-
+//const URL="http://localhost:3000";
+const URL = "https://my-hair-salon.vercel.app"
 
 export const fetchSalons = async (page = 1, limit = 30) => {
   try {
     const response = await fetch(`${URL}/api/salons?page=${page}&limit=${limit}`);
-    if (!response.ok) {
-      throw new Error(`An error occurred: ${response.statusText}`);
-    }
     const data = await response.json();
+   // console.log(data);
     return data;
   } catch (error) {
     console.error('Error fetching salons:', error);

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import classes from "@/styles/searchwithLocation.module.css";
 import { MdGpsFixed } from "react-icons/md";
 import SalonCard from './UI/SalonCard';

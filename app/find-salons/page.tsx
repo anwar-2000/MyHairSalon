@@ -5,10 +5,10 @@ import React from 'react'
 
 const Index = async () => {
       const data = await fetchSalons();
-      console.log(data)
+      //console.log(data)
   return <div>
     <SearchSalonsWithLocations salons={data} />
   </div>
 }
 
-export default Index
+export default Index;
