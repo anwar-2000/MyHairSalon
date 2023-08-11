@@ -1,28 +1,27 @@
+import { createMongoConnection } from '@/database/Conn';
 import SalonModel from '@/models/SalonModel';
 import { NextResponse } from "next/server";
 
 
 // GET method
-export async function GET(req: Request) {
+export async function GET(req: Request , res : Response) {
+  createMongoConnection()
   try {
     const {searchParams} = new URL(req.url);
     const salonName = searchParams.get("salon");
     const page  = searchParams.get("page") as unknown as number  || 1;
     const limit  = searchParams.get("limit") as unknown as number  || 50;
-    let salons;
-
     const country = searchParams.get("Country");
     const place = searchParams.get("Place");
-    
+    let salons = null;
     const ownerEmail = searchParams.get("owner");
     if(ownerEmail){
       salons = await SalonModel.find({ owner: ownerEmail });
     }
     else if(salonName) {
-     
       salons = await SalonModel.find({ name: salonName });
+     // console.log("*******************************",salons)
     } else if(country && place) {
-
       salons = await SalonModel.find({ country: salonName , place : place });
     }
     else if(page && limit) {
@@ -34,6 +33,7 @@ export async function GET(req: Request) {
     if (!salons) {
       return NextResponse.json({ message: "Salon Not Found" });
     }
+    //console.log("SERVER",salons)
     return  NextResponse.json(salons);
   } catch (error) {
     console.error(error);
@@ -43,6 +43,7 @@ export async function GET(req: Request) {
 
 // POST method
 export async function POST(req: Request) {
+  createMongoConnection()
   try {
     const body = await req.json();
     const newSalon = await SalonModel.create(body);

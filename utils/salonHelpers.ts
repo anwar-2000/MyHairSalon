@@ -1,12 +1,14 @@
-//const URL="http://localhost:3000";
-const URL = "https://my-hair-salon-git-master-anwar-2000.vercel.app/"
+
+//const URL="http://localhost:3000"
+const URL = "https://my-hair-salon-anwar-2000.vercel.app"
 
 export const fetchSalons = async (page = 1, limit = 30) => {
   try {
     const response = await fetch(`${URL}/api/salons?page=${page}&limit=${limit}`);
-    const data = await response.json();
-   // console.log(data);
-    return data;
+    //const data = await response.json();
+    //console.log(data);
+   // console.log("here")
+    return response.json();
   } catch (error) {
     console.error('Error fetching salons:', error);
     throw error;
@@ -20,9 +22,16 @@ export const fetchSalons = async (page = 1, limit = 30) => {
     return data;
   };
   export const fetchSalonByName= async (name : string) => {
-    const response = await fetch(`${URL}/api/salons?salon=${name}`);
-    const data = await response.json();
-    return data;
+    try {
+      const response = await fetch(`${URL}/api/salons?salon=${name}`);
+      const data = await response.json()
+      //console.log(data)
+      return data;
+    } catch (error) {
+      console.error('Error fetching salons:', error);
+      throw error;
+    }
+    
   };
 
   export const fetchSalonOfCountryAndPlace= async (country : string , place : string) => {

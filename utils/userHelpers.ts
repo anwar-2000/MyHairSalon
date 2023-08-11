@@ -1,6 +1,7 @@
 //const URL="http://localhost:3000";
 const URL = "https://my-hair-salon-git-master-anwar-2000.vercel.app/"
-  
+
+
 export const fetchUsers = async (page = 1, limit = 10) => {
     const response = await fetch(`${URL}/api/accounts?page=${page}&limit=${limit}`);
     const data = await response.json();
@@ -13,8 +14,6 @@ export const fetchUsers = async (page = 1, limit = 10) => {
     return data;
   };
 
-
- //posting a new book
 export const addUser = async (formData: any) => {
     console.log(formData)
     try {
@@ -33,7 +32,7 @@ export const addUser = async (formData: any) => {
     }
  }
 
-  //updating a new book
+
 export const updateUser = async (userEmail : string ,formData:Object) =>{
     try {
         const options = {
