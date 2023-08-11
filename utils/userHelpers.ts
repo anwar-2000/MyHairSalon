@@ -1,9 +1,5 @@
-const isProduction = process.env.NODE_ENV === "production";
-const URL = isProduction
-  ? process.env.NEXT_PUBLIC_HOST_URL 
-  : process.env.NEXT_PUBLIC_LOCAL_URL; 
-
-  console.log(isProduction,URL)
+//const URL="http://localhost:3000"
+const URL="https://my-hair-salon.vercel.app"
   
 export const fetchUsers = async (page = 1, limit = 10) => {
     const response = await fetch(`${URL}/api/accounts?page=${page}&limit=${limit}`);
