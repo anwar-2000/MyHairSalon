@@ -1,11 +1,24 @@
-import { fetchSalonByName } from '@/utils/salonHelpers'
 import React from 'react'
 import classes from "@/styles/pages/salon.module.css"
 import Image from 'next/image'
+import { createMongoConnection } from '@/database/Conn'
+import SalonModel from '@/models/SalonModel'
 
-interface Props {}
+
+const fetchSalonByName = async (salonName : string) =>{
+  createMongoConnection() //establishing connection to db
+  const nameofSalon = decodeURIComponent(salonName) // to get rid of %20 and other special characters ...
+  const salon = await SalonModel.find({ name: nameofSalon }).lean();
+ // console.log(salon)
+  if(!salon){
+    return [];
+  }
+ // console.log(salon);
+  return salon;
+}
 
 export default async function Page({ params }: { params: { salonName: string } }) {
+    console.log(params.salonName)
     const salon = await fetchSalonByName(params.salonName)
     //console.log(salon['salons']);
 

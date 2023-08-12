@@ -4,21 +4,22 @@ const URL=process.env.NEXT_PUBLIC_API_URL;
 export const fetchSalons = async (page = 1, limit = 30) => {
   try {
     const response = await fetch(`${URL}/api/salons?page=${page}&limit=${limit}`);
-    //const data = await response.json();
-    //console.log(data);
-   // console.log("here")
-    return response.json();
+    return await response.json();
   } catch (error) {
     console.error('Error fetching salons:', error);
-    throw error;
   }
 };
 
 
   export const fetchSalonOwner= async (ownerEmail : string) => {
-    const response = await fetch(`${URL}/api/salons?owner=${ownerEmail}`);
-    const data = await response.json();
-    return data;
+    try{
+      const response = await fetch(`${URL}/api/salons?owner=${ownerEmail}`);
+      const data = await response.json();
+      return data;  
+    }catch(err){
+      console.log(err)
+    }
+   
   };
 
 
@@ -29,15 +30,20 @@ export const fetchSalons = async (page = 1, limit = 30) => {
       return responseData;
 
     } catch (error) {
-      // ... error handling ...
+        console.log(error)
     }
   };
 
 
   export const fetchSalonOfCountryAndPlace= async (country : string , place : string) => {
-    const response = await fetch(`${URL}/api/salons?country=${country}&place=${place}`);
-    const data = await response.json();
-    return data;
+    try {
+      const response = await fetch(`${URL}/api/salons?country=${country}&place=${place}`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+        console.log(error)
+    }
+   
   };
 
 const uplaodImage = async (imagePath : string) => {
@@ -47,7 +53,7 @@ const uplaodImage = async (imagePath : string) => {
           body : JSON.stringify({path : imagePath})
       })
       //console.log(response)
-      return response.json()
+      return await response.json()
   } catch (error) {
     throw error
   }

@@ -35,6 +35,8 @@ const LoginForm = () => {
 }
 export default LoginForm;
 
+
+
 async function HandleClick (email :string,password:string)  {
   console.log(email,password)
   if(email ==='' || password === ''){

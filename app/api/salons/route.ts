@@ -29,11 +29,15 @@ export async function GET(req: Request , res : Response) {
       const skip: number = (page - 1)  * limit ;
       salons = await SalonModel.find({}).skip(skip).limit(limit);
       //console.log("here",salons)
+    }else{
+      salons = await SalonModel.find({});
     }   
     if (!salons) {
       return NextResponse.json({ message: "Salon Not Found" });
     }
     //console.log("SERVER",salons)
+    console.log("IS JSON *************** ",JSON.stringify(salons))
+      
     return  NextResponse.json(salons);
   } catch (error) {
     console.error(error);
