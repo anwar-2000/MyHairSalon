@@ -3,8 +3,12 @@
 import React, { ChangeEvent, useState } from 'react'
 import classes from "@/styles/salonInfo.module.css"
 import {AiFillEdit} from "react-icons/ai"
-import { addSalon, updateSalon } from '@/utils/salonHelpers';
+import { addSalon, days, updateSalon } from '@/utils/salonHelpers';
 import HaircutsForm from './HaircutsForm';
+import Calendar from 'react-calendar';
+import "react-calendar/dist/Calendar.css";
+import { add, format, setHours, setMinutes, startOfHour } from 'date-fns';
+
 
 interface Props {
     name : string;
@@ -31,7 +35,40 @@ const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,hairc
     const [updatedPlace, setupdatedPlace] = useState(place);
     const [updatedImage, setupdatedImage] = useState(image);
     const [Newhaircuts, setNewHaircuts] = useState<Haircut[]>(haircuts);
+    const [selectedDays, setSelectedDays] = useState<string[]>([]);
 
+    const [openHour, setOpenHour] = useState<string>("");
+    const [closingHour, setClosingHour] = useState<string>("");
+
+
+    const [newOpenDays, setNewOpenDays] = useState<any[]>([]);
+    const [NewCloseDays, setNewCloseDays] = useState<any[]>([]);
+    
+
+    const getTimes = () => {
+        const  justDate  = new Date();
+        const beginning = setHours(setMinutes(startOfHour(justDate), 0), 9); // Set starting time to 9:00 AM
+        const end = setHours(setMinutes(startOfHour(justDate), 0), 17);
+        const interval = 30; // minutes
+    
+        const times = [];
+    
+        for (let i = beginning; i <= end; i = add(i, { minutes: interval })) {
+          times.push(i);
+        }
+    
+        return times;
+      };
+    
+      const times = getTimes();
+
+    const handleDaySelection = (day: string) => {
+        if (selectedDays.includes(day)) {
+            setSelectedDays(selectedDays.filter(selectedDay => selectedDay !== day));
+        } else {
+            setSelectedDays([...selectedDays, day]);
+        }
+    };
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -58,7 +95,8 @@ const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,hairc
 
     async function EditPersonalInfos(e : any , email : string) {
         e.preventDefault();
-
+         
+        setNewOpenDays([{startTime : openHour , endTime : closingHour}])
         let formData = {
             name : updatedName,
             country : updatedCountry ,
@@ -67,9 +105,13 @@ const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,hairc
             place : updatedPlace,
             address : updatedAddress,
             image : updatedImage,
-            haircuts : Newhaircuts
+            haircuts : Newhaircuts,
+            weekends : selectedDays,
+            openDays : newOpenDays,
+            closedDays : NewCloseDays
         }
-       // console.log(formData)
+        console.log(formData)
+
         let updatedSalon = null;
         if(formData && !name){
         updatedSalon = await addSalon(email,formData);
@@ -111,6 +153,64 @@ const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,hairc
         <div>
                 <HaircutsForm addHaircut={setNewHaircuts} haircuts={Newhaircuts} />
         </div>
+        <div className={classes.item}>
+        <div className={classes.weekendDays}>
+            <h3>Weekend Days :</h3>
+            {days.map((day, index) => (
+                <label key={index}>
+                    <input
+                        type="checkbox"
+                        checked={selectedDays.includes(day)}
+                        onChange={() => handleDaySelection(day)}
+                    />
+                    {day}
+                </label>
+            ))}
+        </div>
+        </div>
+        <div className={classes.item}>
+            <div className={classes.closeDays}>
+                <h3>Closed this Day :</h3>
+                <Calendar minDate={new Date()}
+                  /**days and closed days */
+                  view="month"
+                  onClickDay={(date) =>
+                    setNewCloseDays([...NewCloseDays , {date : date}])
+                  }/>
+            </div>
+        </div>
+
+        <div className={classes.item}>
+            <div className={classes.closeDays}>
+                <h3>Opening Hour:</h3>
+                <div className={classes.hours}>
+                  {times &&
+                    times.map((time, index) => (
+                      <div key={`time-${index}`}>
+                        <button  onClick={()=>setOpenHour(format(time,"kk:mm"))}>
+                          {format(time, "kk:mm")}
+                        </button>
+                      </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+        <div className={classes.item}>
+            <div className={classes.closeDays}>
+                <h3>Closing Hour:</h3>
+                <div className={classes.closehours}>
+                  {times &&
+                    times.map((time, index) => (
+                      <div key={`time-${index}`}>
+                        <button  onClick={()=>setClosingHour(format(time,"kk:mm"))}>
+                          {format(time, "kk:mm")}
+                        </button>
+                      </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+
         <button type='submit' className={classes.button}>
             SAVE
         </button>

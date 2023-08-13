@@ -1,5 +1,7 @@
 
 const URL=process.env.NEXT_PUBLIC_API_URL;
+export const days = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi']
+
 
 export const fetchSalons = async (page = 1, limit = 30) => {
   try {
@@ -77,7 +79,7 @@ export const addSalon = async (ownerEmail : string ,formData: any) => {
     }
  }
 
-  //updating a new book
+  //updating 
 export const updateSalon = async (owner : string ,formData:Object) =>{
     console.log(owner,formData);
     try {
@@ -109,3 +111,11 @@ export const deleteSalon = async (owner : string) =>{
         return error
     }
  }
+
+export const weekDayIndexToName = (index : number) =>{
+    
+    return days[index]
+}
+
+
+

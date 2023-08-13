@@ -19,7 +19,7 @@ const HaircutsForm: React.FC<Props> = ({haircuts , addHaircut}) => {
     if(name==="" || price===""){
         return;
     }
-     haircuts ? addHaircut([...haircuts, { name, price }]) : addHaircut([{ name, price }])  ;
+     haircuts ? addHaircut([...haircuts, { name, price }]) : addHaircut([{ name, price }]);
     setName('');
     setPrice('');
   };

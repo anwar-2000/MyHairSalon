@@ -3,6 +3,7 @@ import classes from "@/styles/pages/salon.module.css"
 import Image from 'next/image'
 import { createMongoConnection } from '@/database/Conn'
 import SalonModel from '@/models/SalonModel'
+import BookingForm from '@/Components/BookingForm'
 
 
 const fetchSalonByName = async (salonName : string) =>{
@@ -18,13 +19,13 @@ const fetchSalonByName = async (salonName : string) =>{
 }
 
 export default async function Page({ params }: { params: { salonName: string } }) {
-    console.log(params.salonName)
+   // console.log(params.salonName)
     const salon = await fetchSalonByName(params.salonName)
     //console.log(salon['salons']);
 
   return <div className={classes.main__container}>
           <div className={classes.image__salon}>
-                <Image src={salon[0]?.image} alt='' fill />
+                <Image src={salon[0]?.image} alt='' fill priority />
           </div>
           <div className={classes.infos}>
                 <h1>{salon[0]?.name}</h1>
@@ -49,10 +50,6 @@ export default async function Page({ params }: { params: { salonName: string } }
                     }
                   </div>
           </div>
-          <div className={classes.appintments}>
-                    <button>
-                      MAKE AN APPOINTMENT
-                    </button>
-          </div>
+                    <BookingForm artists={salon[0].artists}/>
   </div>
 }

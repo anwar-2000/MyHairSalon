@@ -78,3 +78,67 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.weekendDays{
+    width: 700px;   
+}
+
+.weekendDays label {
+    margin-left: 0.6rem;   
+}
+
+.closeDays{
+    width: 700px; 
+}
+
+.hours{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.hours button{
+    background : black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.hours button:hover{
+    background : rgb(241, 241, 241);
+    color: rgb(5, 5, 5);
+    border: solid 1px black;
+}
+
+.hours button:focus{
+    background : rgb(59, 43, 43);
+    color: rgb(5, 5, 5);
+    border: solid 1px black;
+}
+/** */
+.closehours{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.closehours button{
+    background : black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.closehours button:hover{
+    background : rgb(241, 241, 241);
+    color: rgb(5, 5, 5);
+    border: solid 1px black;
+}
+
+.closehours button:focus{
+    background : rgb(59, 43, 43);
+    color: rgb(5, 5, 5);
+    border: solid 1px black;
+}
