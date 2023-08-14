@@ -19,6 +19,9 @@ interface Props {
     place : string;
     image : string;
     haircuts : any[];
+    weekends : any[];
+    closedDays : any[];
+    openDays : any[];
 }
 
 interface Haircut {
@@ -26,8 +29,9 @@ interface Haircut {
     price: string;
   }
 
-const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,haircuts,description}) => {
-
+const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,haircuts,description,weekends,closedDays,openDays}) => {
+    const [openDay, setOpenDay] = useState(openDays.length > 0 ? openDays[0] : null);
+    console.log(openDay,closedDays,weekends);
     const [updatedName, setupdatedName] = useState(name)
     const [updatedDescription, setupdatedDescription] = useState(description)
     const [updatedCountry, setupdatedCountry] = useState(country)
@@ -44,6 +48,23 @@ const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,hairc
     const [newOpenDays, setNewOpenDays] = useState<any[]>([]);
     const [NewCloseDays, setNewCloseDays] = useState<any[]>([]);
     
+    //extracting the weekends
+    const weekend1 = days.indexOf(weekends[0]);
+    const weekend2 = days.indexOf(weekends[1]);
+
+    //extracting the closed day
+    const closedThisDay = closedDays[0].date;
+
+
+
+const tileClassName = ({ date = new Date() }) => {
+  if (date.getDay() === weekend1 || date.getDay() === weekend2) {
+    return 'weekend disabled';
+  }
+  return null;
+};
+
+
 
     const getTimes = () => {
         const  justDate  = new Date();
@@ -160,7 +181,7 @@ const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,hairc
                 <label key={index}>
                     <input
                         type="checkbox"
-                        checked={selectedDays.includes(day)}
+                        checked={selectedDays.includes(day) || day === weekends[0] || day === weekends[1] }
                         onChange={() => handleDaySelection(day)}
                     />
                     {day}
@@ -174,6 +195,8 @@ const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,hairc
                 <Calendar minDate={new Date()}
                   /**days and closed days */
                   view="month"
+                  tileClassName={tileClassName}
+                  tileDisabled={({ date }) => date.toDateString() === closedThisDay.toDateString()}
                   onClickDay={(date) =>
                     setNewCloseDays([...NewCloseDays , {date : date}])
                   }/>

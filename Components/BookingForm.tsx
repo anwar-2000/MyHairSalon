@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import classes from "@/styles/bookingform.module.css";
-import ReactCalendar from "react-calendar";
+import ReactCalendar, { Calendar } from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { add, format } from "date-fns";
+import { days } from "@/utils/salonHelpers";
 
 /**
  *
@@ -15,22 +16,49 @@ interface DateType {
   justDate: Date | null;
   dateTime: Date | null;
 }
-const BookingForm = ({ artists }: any) => {
+const BookingForm = ({ artists , weekends , closedDays , openDays }: any) => {
+
   const [showForm, setshowForm] = useState(false);
   const [artistChosen, setArtistChosen] = useState("");
-
+  const [openDay, setOpenDay] = useState(openDays[0]);
+  console.log(openDay,closedDays,weekends);
   const [date, setDate] = useState<DateType>({
     justDate: null,
     dateTime: null,
   });
+
+
+
+//extracting the weekends
+const weekend1 = days.indexOf(weekends[0]);
+const weekend2 = days.indexOf(weekends[1]);
+
+//extracting the closed day
+const closedThisDay = closedDays[0].date;
+
+
+
+const tileClassName = ({ date = new Date() }) => {
+  if (date.getDay() === weekend1 || date.getDay() === weekend2) {
+    return 'weekend disabled';
+  }
+  return null;
+};
+
+
+// Extracting hours from startTime and endTime
+const startHour = parseInt(openDay.startTime.split(':')[0], 10);
+const endHour = parseInt(openDay.endTime.split(':')[0], 10);
+
+
 
   const getTimes = () => {
     if (!date.justDate) return;
 
     const { justDate } = date;
 
-    const begening = add(justDate, { hours: 9 });
-    const end = add(justDate, { hours: 17 });
+    const begening = add(justDate, { hours: startHour });
+    const end = add(justDate, { hours: endHour });
     const interval = 30; // minutes
 
     const times = [];
@@ -43,8 +71,7 @@ const BookingForm = ({ artists }: any) => {
   };
 
   const times = getTimes();
-
-  console.log(date.dateTime);
+  //console.log(date.justDate)
 
   const handleChooseArtist = (artist: string) => {
     setArtistChosen(artist);
@@ -84,14 +111,15 @@ const BookingForm = ({ artists }: any) => {
                     ))}
                 </div>
               ) : (
-                <ReactCalendar
+                <Calendar
                   minDate={new Date()}
-                  /**days and closed days */
+                  /**closed day */
+                  tileDisabled={({ date }) => date.toDateString() === closedThisDay.toDateString()}
                   view="month"
                   onClickDay={(date) =>
                     setDate((prev) => ({ ...prev, justDate: date }))
                   }
-                  className={classes.react_calendar}
+                  tileClassName={tileClassName}
                 />
               )}
             </div>

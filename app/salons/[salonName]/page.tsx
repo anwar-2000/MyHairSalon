@@ -21,7 +21,7 @@ const fetchSalonByName = async (salonName : string) =>{
 export default async function Page({ params }: { params: { salonName: string } }) {
    // console.log(params.salonName)
     const salon = await fetchSalonByName(params.salonName)
-    //console.log(salon['salons']);
+    console.log(salon);
 
   return <div className={classes.main__container}>
           <div className={classes.image__salon}>
@@ -50,6 +50,6 @@ export default async function Page({ params }: { params: { salonName: string } }
                     }
                   </div>
           </div>
-                    <BookingForm artists={salon[0].artists}/>
+                    <BookingForm artists={salon[0].artists} weekends={salon[0].weekends} closedDays={salon[0].closedDays} openDays={salon[0].openDays}/>
   </div>
 }
