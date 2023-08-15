@@ -1,8 +1,9 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap : 2rem;
-  width : 100vw;
+.home__container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100vw;
 }

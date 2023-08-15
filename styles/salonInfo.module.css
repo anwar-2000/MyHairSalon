@@ -80,7 +80,11 @@
 }
 
 .weekendDays{
-    width: 700px;   
+    width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;   
 }
 
 .weekendDays label {
@@ -141,4 +145,22 @@
     background : rgb(59, 43, 43);
     color: rgb(5, 5, 5);
     border: solid 1px black;
+}
+
+
+@media screen and (max-width : 420px) {
+    .saloninfo__container{
+        width: 500px;
+    }
+    .weekendDays{
+        width: 270px;
+    }
+    .closeDays{
+        transform: translateX(0.5rem);
+        width: 330px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
 }

@@ -154,7 +154,10 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
             </div>
           )}
           {date.dateTime &&
-            <select name="" id="" defaultValue="choose a haircut" onChange={(e)=>setHaircutChosen(e.target.value)}>
+            <select name="" id="" onChange={(e)=>setHaircutChosen(e.target.value)}>
+              <option value="choose" disabled selected>
+                     Choose a haircut
+               </option>
                 {haircuts.map((haircut:any,index : number)=>(
                     <option key={index} value={haircut.name} >{haircut.name}</option>
                 ))}

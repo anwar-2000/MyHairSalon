@@ -1,5 +1,4 @@
 .about__container{
-    height : 50vh;
     background-color: rgb(252, 252, 252);
     color : rgb(133, 133, 133);
     display: flex;
@@ -24,15 +23,12 @@
 }
 
 @media screen and (max-width : 720px) {
-    .about__container{
-        transform: translate(0rem,-23.8rem) !important;
-    }
     .about__container h1{
         font-size: 1.5rem;
         transform: translate(1rem,-3rem) !important;
     }
     .about__container p {
-        font-size: 0.6rem;
+        font-size: 1rem;
         width : 90%;
         transform: translateX(1rem);
         padding-bottom: 0rem;

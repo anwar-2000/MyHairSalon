@@ -23,6 +23,7 @@
     font-weight: bold;
     color : white;
     background-color: black;
+   
     cursor: pointer;
 }
 .register__container select{
@@ -30,6 +31,7 @@
     padding: 0.9rem;
     border-radius: 5px;
     border: 1px solid black;
+   
 }
 
 @media screen and (max-width : 720px) {

@@ -30,7 +30,7 @@ interface Haircut {
 
 const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,haircuts,description,weekends,closedDays,openDays}) => {
     const [openDay, setOpenDay] = useState(openDays.length > 0 ? openDays[0] : null);
-    console.log(openDay,closedDays,weekends);
+   // console.log(openDay,closedDays,weekends);
     const [updatedName, setupdatedName] = useState(name)
     const [updatedDescription, setupdatedDescription] = useState(description)
     const [updatedCountry, setupdatedCountry] = useState(country)
@@ -52,7 +52,7 @@ const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,hairc
     const weekend2 = days.indexOf(weekends[1]);
 
     //extracting the closed day
-    const closedThisDay = closedDays[0].date;
+    const closedThisDay = closedDays[0]?.date ;
 
 
 
@@ -147,30 +147,30 @@ const tileClassName = ({ date = new Date() }) => {
         <div className={classes.saloninfo__container}>
         <div className={classes.item}>
             <input defaultValue={name || ""} onChange={(e)=>setupdatedName(e.target.value)} placeholder="name"/>
-            <AiFillEdit color='black' size={20}/>
+            
         </div>
         <div className={classes.item}>
             <input defaultValue={description || ""} onChange={(e)=>setupdatedDescription(e.target.value)} placeholder="description"/>
-            <AiFillEdit color='black' size={20}/>
+            
         </div>
         <div className={classes.item} >
             <input onChange={(e)=>setupdatedCountry(e.target.value)} defaultValue={country || ""} placeholder="country" />
-            <AiFillEdit color='black' size={20}/>
+            
         </div>
         <div className={classes.item}>
             <input defaultValue={place || ""} onChange={(e)=>setupdatedPlace(e.target.value)} placeholder="place"/>
-            <AiFillEdit color='black' size={20}/>
+            
         </div>
         <div className={classes.item}>
             <input defaultValue={address || ""} onChange={(e)=>setupdatedAddress(e.target.value)} placeholder="Adresse"/>
-            <AiFillEdit color='black' size={20}/>
+            
         </div>
         {!image && <div className={classes.item}>
             <input type="file" onChange={handleImageChange}/>
-            <AiFillEdit color='black' size={20}/>
+            
         </div>}
         {image && <img src={image} alt="" width={350} height={50}/>}
-        <div>
+        <div className={classes.haircutsForm}>
                 <HaircutsForm addHaircut={setNewHaircuts} haircuts={Newhaircuts} />
         </div>
         <div className={classes.item}>
@@ -195,7 +195,7 @@ const tileClassName = ({ date = new Date() }) => {
                   /**days and closed days */
                   view="month"
                   tileClassName={tileClassName}
-                  tileDisabled={({ date }) => date.toDateString() === closedThisDay.toDateString()}
+                  tileDisabled={({ date }) => closedThisDay &&  date.toDateString() === closedThisDay.toDateString()}
                   onClickDay={(date) =>
                     setNewCloseDays([...NewCloseDays , {date : date}])
                   }/>

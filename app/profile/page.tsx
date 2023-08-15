@@ -22,8 +22,8 @@ const Index = async () => {
       salon = await fetchMySalon(user[0].email);
 
   return <div className={classes.profile__container}>
-      <div className="infos">
-        <Suspense fallback={<p>Loading feed...</p>}>
+      <div className={classes.infos}>
+        <Suspense fallback={<p>Loading Infos ...%</p>}>
           <small>{user[0].username} | {user[0].role} | {salon[0]?.name}</small>
           <h1>{user[0].email}</h1>
         </Suspense>

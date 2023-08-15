@@ -1,5 +1,5 @@
 .personalinfo__container{
-    width: 700px;
+    width: 100%;
     height: auto;
     display: flex;
     align-items: center;
@@ -33,5 +33,18 @@
     cursor: pointer;
     border: none;
     border-radius: 10px;
-    transform: translateX(-0.8rem);
+    transform: translateX(0.3rem);
+}
+
+@media screen and (max-width : 420px) {
+     .item input {
+    padding: 1rem 2rem;
+    width: 300px;
+}
+.item select {
+    padding: 1rem 0rem;
+    width: 300px;
+    background: none;
+    border: solid black 1px;
+}
 }

@@ -48,3 +48,15 @@
     gap: 0.9rem;
     width: 100%;
 }
+
+@media screen and (max-width : 420px) {
+    .salonCard__container{
+        width: 290px;
+    }
+
+    .imageEl{
+        width : 260px;
+        border-radius: 6px;
+        height: 151px;
+    }
+}

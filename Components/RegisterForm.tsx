@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import classes from "@/styles/register.module.css";
 import { addUser } from "@/utils/userHelpers";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const RegisterForm = () => {
   const router = useRouter()
@@ -14,7 +17,13 @@ const RegisterForm = () => {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-
+    if(username === "" || email === "" || password === "" || confirmPassword ===""){
+      toast.info('Le Formulaire doit être remplis ',{
+        position: toast.POSITION.TOP_RIGHT,
+        theme: "dark"
+      });
+      return;
+    }
     // Create an object with form data
     const formData = {
       username,
@@ -27,6 +36,10 @@ const RegisterForm = () => {
     try {
       const response = await addUser(formData);
       if (response) {
+        toast.info('Votre Compte est créé',{
+          position: toast.POSITION.TOP_RIGHT,
+          theme: "dark"
+        });
             router.push('/login');
       }
     } catch (error) {

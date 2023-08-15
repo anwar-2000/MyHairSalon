@@ -37,18 +37,18 @@ const PersonalInfo:React.FC<Props> = ({username , role , email}) => {
         <div className={classes.personalinfo__container}>
         <div className={classes.item}>
             <input defaultValue={username} onChange={(e)=>setupdatedUsername(e.target.value)}/>
-            <AiFillEdit color='black' size={20}/>
+            
         </div>
         <div className={classes.item} >
             <select onChange={(e)=>setupdatedRole(e.target.value)} defaultValue={role}>
             <option value="customer">Customer</option>
             <option value="salonOwner">Salon Owner</option>
             </select>
-            <AiFillEdit color='black' size={20}/>
+            
         </div>
         <div className={classes.item}>
             <input defaultValue={email} onChange={(e)=>setupdatedEmail(e.target.value)}/>
-            <AiFillEdit color='black' size={20}/>
+            
         </div>
         <button >
             SAVE

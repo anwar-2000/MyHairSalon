@@ -1,16 +1,14 @@
 .hero__container{
-    height : 150vh;
     width : 100vw;
-    position: relative;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    transform: translateY(3rem);
+    transform: translateY(5rem) !important;
 }
 
 .hero__first h1{
-    align-self: start;
+    align-self: flex-start;
     font-weight: bold;
     font-size : 4rem;
     transform: translate(3rem,-3rem);
@@ -41,14 +39,10 @@
     color : black;
 }
 
-@media screen and (max-width : 720px) {
-    .hero__container{
-        transform: translateY(-6rem);
-    }
+@media screen and (max-width : 375px) {
     .hero__first h1{
-        font-size: 1.5rem;
-       width : 60vw;
-        transform: translate(-1rem,-3.2rem) !important;
+        font-size: 2rem !important;
+        width : 70vw;
     }
     .hero__first button{
        padding : 0.6rem 1.3rem;
@@ -59,7 +53,49 @@
     .hero__video{
         width : 90vw;
         height : 250px;
-    }
+        transform: translateY(-2rem) !important;
+    }    
+}
 
-    
+
+@media screen and (max-width : 720px) {
+    .hero__container{
+        transform: translateY(-25rem);
+    }
+    .hero__first h1{
+        font-size: 2rem;
+        width : 75vw;
+        transform: translate(-1rem,-3.2rem) !important;
+    }
+    .hero__first button{
+       padding : 0.6rem 2.1rem;
+       font-size: small;
+       font-weight: bold;
+       transform: translate(-2.5rem,-2.5rem) !important;
+    }
+    .hero__video{
+        width : 90vw;
+        height : 250px;
+        transform: translateY(-1rem) !important;
+    }    
+}
+
+@media screen and (max-width : 1024px) {
+
+    .hero__first h1{
+        font-size: 3.5rem;
+        width : 75vw;
+        transform: translate(-1rem,-3.2rem) !important;
+    }
+    .hero__first button{
+       padding : 1rem 2.1rem;
+       font-size: small;
+       font-weight: bold;
+       transform: translate(-2.5rem,-2.5rem) !important;
+    }
+    .hero__video{
+        width : 70vw;
+        height : 250px;
+        transform: translateY(-2.5rem) !important;
+    }    
 }

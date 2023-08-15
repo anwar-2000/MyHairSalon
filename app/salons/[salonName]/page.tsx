@@ -46,7 +46,7 @@ export default async function Page({ params }: { params: { salonName: string } }
           </div>
                    { session ? 
                     <BookingForm session={session} salonName={salon[0].name} appointments={appointments} artists={salon[0].artists} haircuts={salon[0].haircuts} weekends={salon[0].weekends} closedDays={salon[0].closedDays} openDays={salon[0].openDays}/> : 
-                    <Link href="/login" style={{border : "1px black solid",padding:"0.6rem"}}>LOGIN TO YOUR  ACCOUNT TO BOOK A HAIRCUT</Link>
+                    <Link href="/login" className={classes.link} style={{border : "1px black solid",padding:"0.6rem"}}>LOGIN TO YOUR  ACCOUNT TO BOOK A HAIRCUT</Link>
                     }
   </div>
 }

@@ -1,5 +1,5 @@
 .mysalon__container{
-    width: 800px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,9 +8,8 @@
 
 
 .choices{
-    width: 700px;
+    width: 100%;
     background-color: rgb(19, 18, 18);
-    height: 50px;
     display: grid;
     place-items: center;
     border-radius: 5px;
@@ -22,6 +21,7 @@
     align-items: center;
     justify-content: center;
     gap: 3rem;
+    flex-wrap: wrap;
     color: white;
 }
 
@@ -37,9 +37,19 @@
     color : black;
 }
 .main__container{
-    width: 700px;
+    width: 100%;
     margin-top: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+@media screen and (max-width : 420px) {
+    .choices{
+        width: 50%;
+    }
+    .choices ul{
+        gap: 0.2rem;
+    } 
 }

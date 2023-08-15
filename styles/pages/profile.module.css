@@ -52,3 +52,13 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+
+@media screen and (max-width : 420px) {
+    .infos h1{
+        font-size: 1.2rem;
+    }
+    .choices ul li {
+      padding: 0.1rem;
+}
+}

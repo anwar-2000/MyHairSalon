@@ -2,15 +2,16 @@ import About from '@/Components/UI/About'
 import Hero from '@/Components/UI/Hero'
 import Testomenials from '@/Components/UI/Testomenials'
 import { createMongoConnection } from '@/database/Conn'
-import styles from './page.module.css'
+import classes from './page.module.css'
 
 export default async function Home() {
         createMongoConnection();
-  return (
-    <main className={styles.main}>
+  return <div className={classes.home__container}>
+           
         <Hero />
         <About />
-        <Testomenials />
-    </main>
-  )
+        <Testomenials />    
+      </div>
+     
+      
 }

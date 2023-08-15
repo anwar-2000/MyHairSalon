@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-      <ToastContainer
+        <ToastContainer
               position="top-right"
               autoClose={5000}
               hideProgressBar={false}
@@ -31,8 +31,8 @@ export default function RootLayout({
               pauseOnHover
               theme="light"
         />
-        {/**@ts-ignore */}
-        <Navbar />
+          {/**@ts-ignore */}
+         <Navbar />
         {children}
         <Footer />
         </Providers>

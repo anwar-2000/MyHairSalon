@@ -18,7 +18,7 @@ const Hero = () => {
           animate: { y: -10, opacity: 1, transition: { type: 'spring', duration: 3 } },
         };
 
-  return <div className={classes.hero__container}>
+  return <motion.div className={classes.hero__container}>
             <motion.div className={classes.hero__first} initial="initial" animate="animate" variants={bounceVariants}>
             <motion.h1 variants={bounceVariants}>
                           Find and Book Appointments at the Best Hair Salons Near You
@@ -29,7 +29,7 @@ const Hero = () => {
             <motion.div className={classes.hero__video} initial="initial" animate="animate" variants={bounceVariantsVideo}>
                  <div className={classes.video}>Video</div>
             </motion.div>
-  </div>
+  </motion.div>
 }
 
 export default Hero;
