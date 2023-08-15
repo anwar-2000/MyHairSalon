@@ -5,14 +5,16 @@ interface AppointmentPattern {
     artist : string;
     salon : string;
     date : Date;
+    haircut : string;
 }
 
 const AppointmentSchema : Schema<AppointmentPattern> = new Schema({
     customer: { type: String, required: true },
     artist: { type: String, required: true },
     salon: { type: String, required: true },
+    haircut: { type: String, required: true },
     date: { type: Date, required: true }
 });
 
-const Appointment = models.Appointment || model('Appointment', AppointmentSchema);
+const Appointment = models?.Appointment || model('Appointment', AppointmentSchema);
 export default Appointment;

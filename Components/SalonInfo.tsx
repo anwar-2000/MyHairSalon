@@ -1,5 +1,4 @@
 "use client"
-
 import React, { ChangeEvent, useState } from 'react'
 import classes from "@/styles/salonInfo.module.css"
 import {AiFillEdit} from "react-icons/ai"

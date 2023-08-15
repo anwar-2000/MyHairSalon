@@ -2,11 +2,14 @@
 
 import React, { useState } from "react";
 import classes from "@/styles/bookingform.module.css";
-import ReactCalendar, { Calendar } from "react-calendar";
+import { Calendar } from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { add, format } from "date-fns";
 import { days } from "@/utils/salonHelpers";
-
+import { createAppointment } from "@/utils/AppointmentsHelpers";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import {useRouter} from "next/navigation";
 /**
  *
  * fetching days and closing days of the salon and pass it here as props
@@ -16,12 +19,13 @@ interface DateType {
   justDate: Date | null;
   dateTime: Date | null;
 }
-const BookingForm = ({ artists , weekends , closedDays , openDays }: any) => {
-
+const BookingForm = ({ salonName , session , artists , weekends , closedDays , openDays , haircuts , appointments }: any) => {
+  const router = useRouter()
   const [showForm, setshowForm] = useState(false);
   const [artistChosen, setArtistChosen] = useState("");
   const [openDay, setOpenDay] = useState(openDays[0]);
-  console.log(openDay,closedDays,weekends);
+  const [haircutChosen, setHaircutChosen] = useState("");
+  //console.log(openDay,closedDays,weekends);
   const [date, setDate] = useState<DateType>({
     justDate: null,
     dateTime: null,
@@ -59,7 +63,7 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
 
     const begening = add(justDate, { hours: startHour });
     const end = add(justDate, { hours: endHour });
-    const interval = 30; // minutes
+    const interval = 45; // minutes
 
     const times = [];
 
@@ -76,6 +80,30 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
   const handleChooseArtist = (artist: string) => {
     setArtistChosen(artist);
   };
+
+  const handleConfirmation = async () =>{
+    let formData = {
+      salon : salonName ,
+      customer : session?.user?.email,
+      artist : artistChosen,
+      date : date.dateTime,
+      haircut : haircutChosen
+    }
+    //console.log(formData)
+    const response = await createAppointment(formData);
+    if(!response){
+        toast.info('Error While Booking',{
+          position: toast.POSITION.TOP_RIGHT,
+          theme: "colored"
+        });
+    }else if(response){
+      toast.info(`Check Your Email For A Receipt`,{
+        position: toast.POSITION.TOP_RIGHT,
+        theme: "colored"
+      });
+      router.push('/profile')
+    }
+  }
   return (
     <div className={classes.form__container}>
       <div className={classes.appintments}>
@@ -83,7 +111,7 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
       </div>
       {showForm && (
         <>
-          <div className={classes.artists}>
+         {artistChosen === "" && <div className={classes.artists}>
             {artists.map((artist: any, index: number) => (
               <button
                 key={index}
@@ -92,22 +120,23 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
                 {artist.name}
               </button>
             ))}
-          </div>
+          </div>}
           {artistChosen !== "" && (
             <div className={classes.form}>
               {date.justDate ? (
-                <div>
+                <div className={classes.times}>
                   {times &&
                     times.map((time, index) => (
-                      <div key={`time-${index}`}>
+                      
                         <button
+                        key={`time-${index}`}
                           onClick={() =>
                             setDate((prev) => ({ ...prev, dateTime: time }))
                           }
                         >
                           {format(time, "kk:mm")}
                         </button>
-                      </div>
+                  
                     ))}
                 </div>
               ) : (
@@ -124,6 +153,25 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
               )}
             </div>
           )}
+          {date.dateTime &&
+            <select name="" id="" defaultValue="choose a haircut" onChange={(e)=>setHaircutChosen(e.target.value)}>
+                {haircuts.map((haircut:any,index : number)=>(
+                    <option key={index} value={haircut.name} >{haircut.name}</option>
+                ))}
+            </select>
+          }
+          {haircutChosen !== "" && (
+                <div className={classes.confirm}>
+                      <h5>{session.user.email}</h5>
+                      <h6>{artistChosen}</h6>
+                      <h6>{haircutChosen}</h6>
+                      <h6>{date.dateTime && date.dateTime.toLocaleString()}</h6>
+                      <button onClick={handleConfirmation}>
+                          Confirm
+                      </button>
+
+                </div>
+            )}
         </>
       )}
     </div>
@@ -131,3 +179,5 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
 };
 
 export default BookingForm;
+
+

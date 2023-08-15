@@ -4,24 +4,18 @@ import Image from 'next/image'
 import { createMongoConnection } from '@/database/Conn'
 import SalonModel from '@/models/SalonModel'
 import BookingForm from '@/Components/BookingForm'
+import Appointment from '@/models/AppointmentModel'
+import { getCurrentUser } from '@/utils/session'
+import Link from 'next/link'
 
 
-const fetchSalonByName = async (salonName : string) =>{
-  createMongoConnection() //establishing connection to db
-  const nameofSalon = decodeURIComponent(salonName) // to get rid of %20 and other special characters ...
-  const salon = await SalonModel.find({ name: nameofSalon }).lean();
- // console.log(salon)
-  if(!salon){
-    return [];
-  }
- // console.log(salon);
-  return salon;
-}
+
 
 export default async function Page({ params }: { params: { salonName: string } }) {
-   // console.log(params.salonName)
-    const salon = await fetchSalonByName(params.salonName)
-    console.log(salon);
+    const session = await getCurrentUser();
+    const salon = await fetchSalonByName(params.salonName);
+    const appointments = fetchSalonAppointments(params.salonName)
+    //console.log(salon , appointments);
 
   return <div className={classes.main__container}>
           <div className={classes.image__salon}>
@@ -50,6 +44,35 @@ export default async function Page({ params }: { params: { salonName: string } }
                     }
                   </div>
           </div>
-                    <BookingForm artists={salon[0].artists} weekends={salon[0].weekends} closedDays={salon[0].closedDays} openDays={salon[0].openDays}/>
+                   { session ? 
+                    <BookingForm session={session} salonName={salon[0].name} appointments={appointments} artists={salon[0].artists} haircuts={salon[0].haircuts} weekends={salon[0].weekends} closedDays={salon[0].closedDays} openDays={salon[0].openDays}/> : 
+                    <Link href="/login" style={{border : "1px black solid",padding:"0.6rem"}}>LOGIN TO YOUR  ACCOUNT TO BOOK A HAIRCUT</Link>
+                    }
   </div>
+}
+
+
+
+const fetchSalonByName = async (salonName : string) =>{
+  createMongoConnection() //establishing connection to db
+  const nameofSalon = decodeURIComponent(salonName) // to get rid of %20 and other special characters ...
+  const salon = await SalonModel.find({ name: nameofSalon }).lean();
+ // console.log(salon)
+  if(!salon){
+    return [];
+  }
+ // console.log(salon);
+  return salon;
+}
+
+const fetchSalonAppointments = async (salonName : string) =>{
+  createMongoConnection() //establishing connection to db
+  const nameofSalon = decodeURIComponent(salonName) // to get rid of "%20" and other special characters ...
+  const appointments = await Appointment.find({salon: nameofSalon }).lean();
+  console.log(appointments)
+  if(!appointments){
+    return [];
+  }
+ // console.log(salon);
+  return appointments;
 }
