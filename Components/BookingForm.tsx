@@ -73,7 +73,6 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
 
     return times;
   };
-
   const times = getTimes();
   //console.log(date.justDate)
 

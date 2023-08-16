@@ -38,6 +38,9 @@
 }
 
 @media screen and (max-width : 720px) {
+    .logo h1{
+        font-size: 1.2rem;
+    }
         .navbar__container{
             justify-content: space-around;
         }

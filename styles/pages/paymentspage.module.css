@@ -1,0 +1,109 @@
+.payments__container{
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.payments__container h5{
+    font-size: 1.8rem;
+    color: rgb(255, 255, 255);
+}
+
+.payments__container h1{
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+
+.freeTrial{
+    width: 250px;
+    padding : 1rem;
+    border: 1px solid blue;
+    background-color: rgb(69, 69, 224);
+    color: white;
+    border-radius: 5px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+.freeTrial .info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+.freeTrial .descr__payment{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+.freeTrial .descr__payment .desc{
+    text-align: center;
+}
+.freeTrial  button{
+    background-color: rgb(243, 243, 243);
+    font-weight: bold;
+    color: rgb(12, 48, 91);
+    margin-top: 3rem;
+    width: 100%;
+    cursor: pointer;
+    padding: 1rem 0rem;
+    border: none;  
+    border-radius: 5px;
+}
+
+
+.three_months{
+    width: 250px;
+    padding : 1rem;
+    border: none;
+    background-color: rgb(235, 94, 6);
+    color: white;
+    border-radius: 5px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+.three_months .info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+.three_months .descr__payment{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+.three_months .descr__payment .desc{
+    text-align: center;
+}
+.three_months  button{
+    background-color: rgb(243, 243, 243);
+    font-weight: bold;
+    color: rgb(12, 48, 91);
+    margin-top: 3rem;
+    width: 100%;
+    cursor: pointer;
+    padding: 1rem 0rem;
+    border: none;  
+    border-radius: 5px;
+}
+
