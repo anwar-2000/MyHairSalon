@@ -54,7 +54,7 @@
 }
 
 
-@media screen and (max-width : 420px) {
+@media screen and (max-width : 460px) {
     .infos h1{
         font-size: 1.2rem;
     }

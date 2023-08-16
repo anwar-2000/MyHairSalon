@@ -1,8 +1,10 @@
+
 import React from 'react'
 import classes from "@/styles/navbar.module.css"
 import Link from 'next/link'
 import {BiMenuAltRight} from "react-icons/bi"
 import { getCurrentUser } from '@/utils/session'
+import NabvarMobile from './NabvarMobile'
 
 const Navbar = async () => {
         const session = await getCurrentUser();
@@ -22,8 +24,8 @@ const Navbar = async () => {
                     <Link href="/login" >Login</Link>
                    {session ? <Link href="/profile" >Profile</Link> : <Link href="/create-account" >Create Account</Link>}
             </div>
-            <div className={classes.hamburger}>
-                 <BiMenuAltRight color='black' size={21}/>
+            <div className={classes.hamburger} style={{zIndex : 160}}>
+                 <NabvarMobile session={session} />
             </div>
   </nav>
 }

@@ -49,11 +49,10 @@
     width: 100%;
 }
 
-@media screen and (max-width : 420px) {
+@media screen and (max-width : 470px) {
     .salonCard__container{
-        width: 290px;
+        width: 300px;
     }
-
     .imageEl{
         width : 260px;
         border-radius: 6px;

@@ -53,14 +53,14 @@
     font-family: 'Poppins' , sans-serif;
 }
 
-@media screen and (max-width : 420px) {
+@media screen and (max-width : 460px) {
     .haircuts__artists{
         flex-direction: column;
         transform: translateX(-0.2rem);
         gap: 1.5rem;
     }
     .haircuts{
-        transform: translateX(-0.7rem);
+        transform: translateX(0rem);
     }
     .artists{
         

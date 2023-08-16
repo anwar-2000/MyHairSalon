@@ -39,9 +39,9 @@
     color : black;
 }
 
-@media screen and (max-width : 375px) {
+@media screen and (max-width : 460px) {
     .hero__first h1{
-        font-size: 2rem !important;
+        font-size: 1.9rem !important;
         width : 70vw;
     }
     .hero__first button{
