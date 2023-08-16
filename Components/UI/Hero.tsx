@@ -3,7 +3,6 @@ import React from 'react'
 import { motion } from 'framer-motion';
 import classes from "@/styles/hero.module.css"
 
-
 const Hero = () => {
      const bounceVariants = {
           initial: { y: -10, opacity: 0 , x : 30},
@@ -21,10 +20,9 @@ const Hero = () => {
   return <motion.div className={classes.hero__container}>
             <motion.div className={classes.hero__first} initial="initial" animate="animate" variants={bounceVariants}>
             <motion.h1 variants={bounceVariants}>
-                          Find and Book Appointments at the Best Hair Salons Near You
-                    </motion.h1>
+            Trouvez Votre Salon de Coiffure Idéal et Réservez Votre Prochain Rendez-vous                     </motion.h1>
                 <br />
-        <motion.button variants={bounceVariantsButton}>Book Now!</motion.button>
+        <motion.button variants={bounceVariantsButton}>Explorez !</motion.button>
                 </motion.div>
             <motion.div className={classes.hero__video} initial="initial" animate="animate" variants={bounceVariantsVideo}>
                  <div className={classes.video}>Video</div>

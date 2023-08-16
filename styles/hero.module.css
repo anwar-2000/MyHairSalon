@@ -10,10 +10,10 @@
 .hero__first h1{
     align-self: flex-start;
     font-weight: bold;
-    font-size : 4rem;
+    font-size : 3.5rem;
     transform: translate(3rem,-3rem);
     color : black;
-    width : 50vw;
+    width : 60vw;
 }
 
 .hero__first button{
@@ -83,15 +83,15 @@
 @media screen and (max-width : 1024px) {
 
     .hero__first h1{
-        font-size: 3.5rem;
-        width : 75vw;
-        transform: translate(-1rem,-3.2rem) !important;
+        font-size: 3rem;
+        width : 80vw;
+        transform: translate(-0rem,-3.2rem) !important;
     }
     .hero__first button{
        padding : 1rem 2.1rem;
        font-size: small;
        font-weight: bold;
-       transform: translate(-2.5rem,-2.5rem) !important;
+       transform: translate(-1.5rem,-2.5rem) !important;
     }
     .hero__video{
         width : 70vw;

@@ -1,8 +1,37 @@
-import React from 'react'
+"use client"
 import classes from "@/styles/pages/paymentspage.module.css"
+import getStripe from '@/utils/getStripe';
+import { useSearchParams } from "next/navigation";
 
-
-const page = () => {
+const page =  ({ params }: { params: { user : string } }) => {
+  const searchParams = useSearchParams();
+  const user = searchParams.get('user');
+  const handleStripe = async (choice : number) => {
+    try {
+      //console.log(user)
+      let StripeData = {
+        choice, user
+      }
+  
+      const stripe = await getStripe();
+      
+      const response = await fetch("/api/stripe", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(StripeData)
+      });
+  
+      const data = await response.json();
+      /** TO DO : ADD REDIRECT STATE && message  */
+  
+      stripe?.redirectToCheckout({ sessionId: data.id });
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  }
+  
   return <div className={classes.payments__container}>
         <div className={classes.freeTrial}>
           <div className="info">
@@ -31,7 +60,7 @@ const page = () => {
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque beatae impedit at sapiente corrupti quibusdam.
             </div>
             <div className="pay">
-              <button> GO ! </button>
+             <button onClick={()=>handleStripe(25)}> GO ! </button>
             </div>
           </div>
               
@@ -47,7 +76,7 @@ const page = () => {
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque beatae impedit at sapiente corrupti quibusdam.
             </div>
             <div className="pay">
-              <button> GO ! </button>
+            <button onClick={()=>handleStripe(10)}> GO ! </button>
             </div>
           </div>
               

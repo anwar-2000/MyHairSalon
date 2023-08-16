@@ -10,6 +10,7 @@ interface SalonPattern {
     place: string;
     country: string;
     image: string;
+    date_subscribe : Date;
     haircuts: [
       {
         name: string;
@@ -45,6 +46,7 @@ const SalonSchema  = new Schema<SalonPattern>({
     place: { type: String, required: true },
     country: { type: String, required: true },
     image: { type: String, required: true },
+    date_subscribe : {type : Date, required : false},
     subscription: {
       type: String,
       required: true,

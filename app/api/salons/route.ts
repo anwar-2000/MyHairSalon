@@ -67,6 +67,7 @@ export async function PUT(req: Request) {
    // console.log(formData)
     if(owner && formData){
       const salon = await SalonModel.findOneAndUpdate({owner : owner},formData)
+     // console.log(salon)
       return  NextResponse.json({"Salon Modified" : salon})
     }
     return  NextResponse.json({error : "Salon Not Found"});

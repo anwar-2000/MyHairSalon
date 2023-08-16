@@ -15,7 +15,6 @@ const Navbar = async () => {
                     </div>
                     <div className={classes.list}>
                             <Link href="">À propos de nous</Link>
-                            <Link href="">Contactez-nous</Link>
                             <Link href="/find-salons">Trouver des salons</Link>
                     </div>
             </div>

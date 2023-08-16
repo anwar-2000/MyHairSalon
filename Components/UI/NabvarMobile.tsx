@@ -1,11 +1,7 @@
 "use client"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import classes from "@/styles/navbarmobile.module.css"
-import { getCurrentUser } from '@/utils/session';
 import {BiMenuAltRight} from "react-icons/bi"
-import { AnimatePresence, motion } from "framer-motion";
-import { toggleNavbar } from "@/redux/features/NavBarSlice";
 import Link from "next/link";
 
 
