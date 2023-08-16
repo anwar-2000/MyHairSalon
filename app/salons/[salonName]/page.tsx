@@ -14,8 +14,8 @@ import Link from 'next/link'
 export default async function Page({ params }: { params: { salonName: string } }) {
     const session = await getCurrentUser();
     const salon = await fetchSalonByName(params.salonName);
-    const appointments = fetchSalonAppointments(params.salonName)
-    //console.log(salon , appointments);
+    const appointments = await fetchSalonAppointments(params.salonName)
+   // console.log(appointments);
 
   return <div className={classes.main__container}>
           <div className={classes.image__salon}>
@@ -69,10 +69,7 @@ const fetchSalonAppointments = async (salonName : string) =>{
   createMongoConnection() //establishing connection to db
   const nameofSalon = decodeURIComponent(salonName) // to get rid of "%20" and other special characters ...
   const appointments = await Appointment.find({salon: nameofSalon }).lean();
-  console.log(appointments)
-  if(!appointments){
-    return [];
-  }
- // console.log(salon);
+  //console.log(appointments)
+  if(!appointments) return [];
   return appointments;
 }

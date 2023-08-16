@@ -25,7 +25,7 @@ const BookingForm = ({ salonName , session , artists , weekends , closedDays , o
   const [artistChosen, setArtistChosen] = useState("");
   const [openDay, setOpenDay] = useState(openDays[0]);
   const [haircutChosen, setHaircutChosen] = useState("");
-  //console.log(openDay,closedDays,weekends);
+  console.log(appointments);
   const [date, setDate] = useState<DateType>({
     justDate: null,
     dateTime: null,
@@ -104,6 +104,22 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
       router.push('/profile')
     }
   }
+
+
+  const isSlotTaken = (selectedDate:any, selectedTime:any) => {
+    const takenAppointment = appointments.find((appointment:any) => {
+      const appointmentDate = new Date(appointment.date);
+      //console.log("ISTAKEN__FUN",appointmentDate)
+      return (
+        appointmentDate.toDateString() === selectedDate.toDateString() &&
+        format(appointmentDate, "kk:mm") === format(selectedTime, "kk:mm") && appointment.artist === artistChosen
+      );
+    });
+   // console.log(takenAppointment)
+    return takenAppointment !== undefined;
+  };
+
+
   return (
     <div className={classes.form__container}>
       <div className={classes.appintments}>
@@ -133,6 +149,7 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
                           onClick={() =>
                             setDate((prev) => ({ ...prev, dateTime: time }))
                           }
+                          disabled={isSlotTaken(date.justDate, time)}
                         >
                           {format(time, "kk:mm")}
                         </button>

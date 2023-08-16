@@ -56,6 +56,11 @@
     border-radius: 5px;
     cursor: pointer;
 }
+.times button:disabled {
+    background-color: rgb(188, 46, 46);
+    color: black;
+    cursor: not-allowed;
+}
 
 .confirm{
     padding-top: 2rem;
