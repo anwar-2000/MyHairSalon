@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { format, isToday, isTomorrow } from 'date-fns';
 
-import classes from "@/styles/AppointmentsItems.module.css"
+import classes from "@/styles/appointmentsItems.module.css"
 
 
 const AppointmentsItems = ({ appointments } : any) => {
