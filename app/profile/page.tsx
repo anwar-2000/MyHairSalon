@@ -7,7 +7,7 @@ import ProfileMain from '@/Components/ProfileMain'
 import SalonModel from '@/models/SalonModel'
 import { createMongoConnection } from '@/database/Conn'
 import UserModel from '@/models/UserModel'
-
+import Link from 'next/link'
 
 
 const Index = async () => {
@@ -24,8 +24,9 @@ const Index = async () => {
   return <div className={classes.profile__container}>
       <div className={classes.infos}>
         <Suspense fallback={<p>Loading Infos ...%</p>}>
-          <small>{user[0].username} | {user[0].role} | {salon[0]?.name}</small>
+          <small>{user[0].username} | {user[0].role} | {salon[0]?.name} </small>
           <h1>{user[0].email}</h1>
+          {salon[0].subscription === "inactive" ? <Link href={`/payments?user=${session.user?.email}`} style={{textAlign : "center"}}>Publier Mon Salon</Link> :<p>Salon En Ligne</p>}
         </Suspense>
     </div>
     <LogOutButton />

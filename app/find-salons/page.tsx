@@ -5,7 +5,7 @@ import React from 'react'
 
 const fetchAllSalons = async () =>{
       createMongoConnection() //establishing connection to db
-      const salons = await SalonModel.find({}).lean();
+      const salons = await SalonModel.find({subscription : "active"}).lean();
       if(!salons){
         return [];
       }

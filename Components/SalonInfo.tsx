@@ -1,13 +1,11 @@
 "use client"
 import React, { ChangeEvent, useState } from 'react'
 import classes from "@/styles/salonInfo.module.css"
-import {AiFillEdit} from "react-icons/ai"
 import { addSalon, days, updateSalon } from '@/utils/salonHelpers';
 import HaircutsForm from './HaircutsForm';
 import Calendar from 'react-calendar';
 import "react-calendar/dist/Calendar.css";
 import { add, format, setHours, setMinutes, startOfHour } from 'date-fns';
-
 
 interface Props {
     name : string;

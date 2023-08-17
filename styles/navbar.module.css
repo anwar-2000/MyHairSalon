@@ -18,18 +18,15 @@
     justify-content: center;
     transform: translateX(2rem);
 }
-
 .logo{
     align-self: start;
 }
-
 .list{
     display: flex;
     gap : 1rem;
     align-items: center;
     justify-content: center;
 }
-
 .nav__secondDiv{
     display: flex;
     transform: translateX(-2rem);
@@ -37,7 +34,6 @@
     align-items: center;
     justify-content: center;
 }
-
 @media screen and (max-width : 720px) {
     .logo h1{
         font-size: 1rem !important;
