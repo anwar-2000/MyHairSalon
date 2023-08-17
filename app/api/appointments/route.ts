@@ -15,4 +15,18 @@ export async function POST(req: Request) {
       return  NextResponse.json({error});
     }
   }
+
+  export async function GET(req: Request) {
+    createMongoConnection()
+    const { searchParams } = new URL(req.url)
+    const salon = searchParams.get('salon')
+    try {
+      //console.log(salon)
+      const newAppointments = await AppointmentModel.find({salon : salon});
+      return  NextResponse.json(newAppointments);
+    } catch (error) {
+      console.error(error);
+      return  NextResponse.json({error});
+    }
+  }
   

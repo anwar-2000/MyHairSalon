@@ -18,3 +18,14 @@ export const createAppointment = async (formData : any) =>{
         console.log(error)
     }
 }
+
+export const fetchSalonAppointments = async (salon : string) => {
+    try {
+        const response = await fetch(`${URL}/api/appointments?salon=${salon}`)
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+

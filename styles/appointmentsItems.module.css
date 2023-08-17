@@ -1,0 +1,51 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+}
+.buttons button {
+    padding: 0.6rem 1rem;
+    background: none;
+    border-radius: 5px;
+    border : solid 1px black;
+    cursor: pointer;
+}
+.items{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.table__container{
+    overflow-x: scroll;
+    display: flex;align-items: center;
+    justify-content: center;
+}
+.container table {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+  
+   .container table th, .container table td {
+    border: 1px solid #060505;
+    padding: 8px;
+  }
+
+.container p {
+    text-align: center;
+}

@@ -6,11 +6,12 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import MyArtists from './MyArtists';
 import { changeProfileChoice } from '@/redux/features/ProfileChoicesSlice';
 import SalonInfo from './SalonInfo';
+import ApointmentsProfile from './ApointmentsProfile';
 
 
 interface Props {}
 
-const ProfileMain = ({user , salon } : any) => {
+const ProfileMain = ({user , salon , appointments} : any) => {
     const choice = useAppSelector((state) => state.ProfileChoicesReducer.value);
     //console.log(choice)
     const dispatch = useAppDispatch();
@@ -30,7 +31,9 @@ const ProfileMain = ({user , salon } : any) => {
   { choice === "my Salon" && <>
       <SalonInfo address={salon?.address} name={salon?.name} description={salon?.description} owner={user[0].email} country={salon?.country} place={salon?.place} image={salon?.image} haircuts={salon?.haircuts} weekends={salon.weekends} closedDays={salon.closedDays} openDays={salon.openDays} />
   </> }
-  { choice === "my Artists" &&  <MyArtists owner={user[0]?.email} artists={salon?.artists}/> }
+  {choice === "my Artists" &&  <MyArtists owner={user[0]?.email} artists={salon?.artists}/> }
+   {/**@ts-ignore */}
+  { choice === "my Appointments" && <ApointmentsProfile salon={salon?.name} /> }
   
   </div>
   

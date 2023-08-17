@@ -21,7 +21,41 @@
     width : 90%;
     transform: translateX(3rem);
 }
+.text{
+     font-size: 1rem !important;
+     text-align: center;
+     width : 70%;
+     margin-top: 0.6rem;
+     color: rgb(53, 50, 47);
+}
+.buttons{
+    transform: translateX(3rem);
+    border-radius: 10px;
+    padding: 0.5rem;
+    align-self: flex-start;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background-color: rgb(255, 255, 255);
+    border: 1px black solid;
+    height: 3rem;
+}
 
+.buttons button{
+    cursor: pointer;
+    background: none;
+    font-family: 'Poppins';
+    border:none;
+    padding: 0.4rem;
+    transition: all ease 400ms;
+}
+.buttons button:hover{
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+}
 @media screen and (max-width : 720px) {
     .about__container h1{
         font-size: 1.5rem;
@@ -32,5 +66,8 @@
         width : 90%;
         transform: translateX(1rem);
         padding-bottom: 0rem;
+    }
+    .buttons{
+        transform: translateX(1rem);
     }
 }

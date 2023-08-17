@@ -4,7 +4,7 @@ const mongoUri = process.env.MONGODB_URI ? process.env.MONGODB_URI : "";
 
 
 export async function createMongoConnection() {
-  if (connection.readyState === 1) {
+  if (connection?.readyState === 1) {
     console.log('Already connected to MongoDB');
     return;
   }
