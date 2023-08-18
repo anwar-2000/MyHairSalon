@@ -96,16 +96,27 @@
     border: solid 1px black;
 }
 
-@media screen and (max-width : 420px) {
-    .appintments button{
-        padding: 0.8rem 2rem;
+@media screen and (max-width: 420px) {
+    .times button {
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 0.8rem 1rem; /* Adjust padding as needed */
+      border-radius: 5px;
+      cursor: pointer;
     }
-    .confirm h5 {
-        font-size : 1rem;
-    }
+  
     .times button:disabled {
-        background-color: rgb(188, 46, 46);
-        color: black;
-        cursor: not-allowed;
+      background-color: rgb(188, 46, 46);
+      color: black;
+      cursor: not-allowed;
     }
-}
+  
+    .confirm h5 {
+      font-size: 1rem;
+    }
+  
+    .appintments button {
+      padding: 0.8rem 2rem;
+    }
+  }

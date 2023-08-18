@@ -14,9 +14,8 @@ const SalonCard = ({salon} : any) => {
         <div className={classes.infos}>
             <h1>{salon.name}</h1>
             <div className={classes.details}>
-              <p>5 Artists</p>
-              <p>20 Haircuts</p>
-              <p>15 Reviews</p>
+              <p>{salon.artists.length} Artists</p>
+              <p>{salon.haircuts.length} Haircuts</p>
             </div>
         </div>
   </div>

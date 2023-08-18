@@ -8,6 +8,7 @@
     width : 100vw;
     padding-bottom: 5rem;
     margin-top: 10rem;
+    z-index: 100;
 }
 .about__container h1 {
     font-weight: bold;

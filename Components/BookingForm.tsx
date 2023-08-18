@@ -96,27 +96,31 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
           theme: "colored"
         });
     }else if(response){
+      
       toast.info(`Check Your Email For A Receipt`,{
         position: toast.POSITION.TOP_RIGHT,
         theme: "colored"
       });
+    
       router.push('/profile')
     }
   }
 
+  //console.log(appointments)
 
-  const isSlotTaken = (selectedDate:any, selectedTime:any) => {
-    const takenAppointment = appointments.find((appointment:any) => {
+  const isSlotTaken = (selectedDate: Date, selectedTime: Date, selectedArtist: string) => {
+    const isTaken = appointments.some((appointment: any) => {
       const appointmentDate = new Date(appointment.date);
-      //console.log("ISTAKEN__FUN",appointmentDate)
-      return (
-        appointmentDate.toDateString() === selectedDate.toDateString() &&
-        format(appointmentDate, "kk:mm") === format(selectedTime, "kk:mm") && appointment.artist === artistChosen
-      );
+      const isSameDate = appointmentDate.toDateString() === selectedDate.toDateString();
+      const isSameTime = format(appointmentDate, "kk:mm") === format(selectedTime, "kk:mm");
+      const isSameArtist = appointment.artist === selectedArtist;
+      
+      return isSameDate && isSameTime && isSameArtist;
     });
-   // console.log(takenAppointment)
-    return takenAppointment !== undefined;
+    
+    return isTaken;
   };
+  
 
 
   return (
@@ -148,7 +152,7 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
                           onClick={() =>
                             setDate((prev) => ({ ...prev, dateTime: time }))
                           }
-                          disabled={isSlotTaken(date.justDate, time)}
+                          disabled={isSlotTaken(date.justDate as Date, time , artistChosen)}
                         >
                           {format(time, "kk:mm")}
                         </button>

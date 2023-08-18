@@ -11,17 +11,17 @@ import ApointmentsProfile from './ApointmentsProfile';
 
 interface Props {}
 
-const ProfileMain = ({user , salon , appointments} : any) => {
+const ProfileMain = ({user , salon } : any) => {
     const choice = useAppSelector((state) => state.ProfileChoicesReducer.value);
     //console.log(choice)
     const dispatch = useAppDispatch();
   return  <div className={classes.mysalon__container}>
   <div className={classes.choices}>
   <ul>
-  <li onClick={() => dispatch(changeProfileChoice("personal Info"))}>Personal Infos</li>
-  <li onClick={() => dispatch(changeProfileChoice("my Salon"))}>MY Salon</li>
-  <li onClick={() => dispatch(changeProfileChoice("my Artists"))}>MY Artists</li>
-  <li onClick={() => dispatch(changeProfileChoice("my Appointments"))}>MY Appointments</li>
+  <li onClick={() => dispatch(changeProfileChoice("personal Info"))}>Mes Infos</li>
+  <li onClick={() => dispatch(changeProfileChoice("my Salon"))}>Mon Salon</li>
+  <li onClick={() => dispatch(changeProfileChoice("my Artists"))}>Mes Artistes</li>
+  <li onClick={() => dispatch(changeProfileChoice("my Appointments"))}>Mes RDV</li>
 </ul>
 
   </div>

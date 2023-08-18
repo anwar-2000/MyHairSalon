@@ -6,6 +6,7 @@
     width : 95vw;
     background-color: white;
     color : #535353;
+    z-index: 15;
 }
 .hamburger{
     display : none;
@@ -44,7 +45,7 @@
        margin-top: 0.7rem;
     }
         .navbar__container{
-            transform: translateX(-1rem);
+            transform: translateX(-0.5rem);
             justify-content: space-around;
         }
         .hamburger{
