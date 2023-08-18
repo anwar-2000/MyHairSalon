@@ -41,6 +41,7 @@ const AppointmentsItems = ({ appointments } : any) => {
             <th>La coupe</th>
             <th>Artiste</th>
             <th>Heure</th>
+            <th>Date</th>
           </tr>
         </thead>
         <tbody>
@@ -50,6 +51,7 @@ const AppointmentsItems = ({ appointments } : any) => {
               <td>{item.haircut}</td>
               <td>{item.artist}</td>
               <td>{format(new Date(item.date), 'HH:mm')}</td>
+              <td>{format(new Date(item.date), "dd-MM-yyyy")}</td>
             </tr>
           ))}
         </tbody>

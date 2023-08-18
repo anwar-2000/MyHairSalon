@@ -4,9 +4,7 @@
     align-items: flex-start;
     justify-content: center;
     height: auto;
-    z-index: 99;
-   
-    
+
 }
 .navbarmobile__container ul{
     margin-top: 2rem;
@@ -20,13 +18,12 @@
     position: absolute;
     justify-content: center;
     transform: translateX(-6rem);
-    background-color: rgb(0, 0, 0);
-    z-index: 100;
+    background-color: #4d4b4b;
+    z-index: 100 !important;
 }
 .navbarmobile__container ul li{
-    background-color: black;
+   
     color: white;
-    z-index: 101;
 }
 
 .main{

@@ -25,7 +25,7 @@ const BookingForm = ({ salonName , session , artists , weekends , closedDays , o
   const [artistChosen, setArtistChosen] = useState("");
   const [openDay, setOpenDay] = useState(openDays[0]);
   const [haircutChosen, setHaircutChosen] = useState("");
-  console.log(appointments);
+ // console.log(appointments);
   const [date, setDate] = useState<DateType>({
     justDate: null,
     dateTime: null,

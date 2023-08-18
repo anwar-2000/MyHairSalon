@@ -1,6 +1,5 @@
-.loader__container{
-    text-align: center;
-}
-.loader__container h1 {
-    font-size: small;
-}
+.loader__container {
+    display: grid;
+    place-items: center;
+    height: 80vh;
+  }

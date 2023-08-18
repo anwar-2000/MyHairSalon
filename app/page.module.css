@@ -6,4 +6,5 @@
     justify-content: center;
     height: auto;
     width: 100vw;
+    z-index: -5;
 }

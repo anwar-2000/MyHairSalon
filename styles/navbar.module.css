@@ -5,7 +5,7 @@
     justify-content: space-between;
     width : 95vw;
     background-color: white;
-    color : black;
+    color : #535353;
 }
 .hamburger{
     display : none;
@@ -19,7 +19,11 @@
     transform: translateX(2rem);
 }
 .logo{
-    align-self: start;
+    align-self: center;
+    margin-top: 1rem;
+}
+.log img{
+    width: 100px;
 }
 .list{
     display: flex;
@@ -35,11 +39,12 @@
     justify-content: center;
 }
 @media screen and (max-width : 720px) {
-    .logo h1{
-        font-size: 1rem !important;
+    .logo {
+       transform: translateX(-1.5rem) !important;
+       margin-top: 0.7rem;
     }
         .navbar__container{
-            
+            transform: translateX(-1rem);
             justify-content: space-around;
         }
         .hamburger{

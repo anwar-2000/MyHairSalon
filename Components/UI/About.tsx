@@ -6,7 +6,7 @@ interface Props {}
 const About = () => {
   const [user, setUser] = useState("")
   return <div className={classes.about__container}>
-        <h1>ABOUT US :</h1>
+        <h1>À propos de nous :</h1>
         <p>
         Nous sommes nés de la passion pour la coiffure et du désir de fusionner l&apos;élégance intemporelle avec la technologie moderne. Notre plateforme est un hommage aux artisans capillaires qui transforment chaque séance en une symphonie visuelle. Nous croyons en la célébration de l&apos;unicité de chaque salon, en mettant en avant non seulement les coupes et les styles, mais aussi les artistes qui les créent.
         </p>

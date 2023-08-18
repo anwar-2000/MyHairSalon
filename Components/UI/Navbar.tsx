@@ -4,6 +4,8 @@ import classes from "@/styles/navbar.module.css"
 import Link from 'next/link'
 import { getCurrentUser } from '@/utils/session'
 import NabvarMobile from './NabvarMobile'
+import Image from "next/image"
+
 
 const Navbar = async () => {
         const session = await getCurrentUser();
@@ -11,7 +13,7 @@ const Navbar = async () => {
   return <nav className={classes.navbar__container}>
             <div className={classes.nav__firstDiv}>
                     <div className={classes.logo}>
-                            <h1>MonSalonConnect</h1>
+                            <Image src={'/logo.png'} alt={'MonSalonConnect'} width={200} height={70} priority/>
                     </div>
                     <div className={classes.list}>
                             <Link href="">À propos de nous</Link>

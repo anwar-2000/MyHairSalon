@@ -54,5 +54,6 @@ a {
 @media screen and (max-width : 460px) {
     .mobileNav{
       display: block;
+      z-index: 100;
     }
 }

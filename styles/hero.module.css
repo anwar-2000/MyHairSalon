@@ -5,6 +5,7 @@
     justify-content: center;
     flex-direction: column;
     transform: translateY(5rem) !important;
+
 }
 
 .hero__first h1{
@@ -12,14 +13,14 @@
     font-weight: bold;
     font-size : 3.5rem;
     transform: translate(3rem,-3rem);
-    color : black;
+    color : #535353;
     width : 60vw;
 }
 
 .hero__first button{
     padding: 0.6rem 3rem;
     border-radius: 8px;
-    background-color: black;
+    background-color: #535353;
     color: white;
     border: none;
     font-size: large;
@@ -50,7 +51,7 @@
 
 @media screen and (max-width : 460px) {
     .hero__first h1{
-        font-size: 1.9rem !important;
+       font-size: 1.9rem !important;
         width : 70vw;
     }
     .hero__first button{
