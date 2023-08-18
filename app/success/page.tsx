@@ -10,12 +10,14 @@ const page = () => {
   const router = useRouter()
   const searchParams = useSearchParams();
   const user = searchParams.get('user');
+  //console.log(user)
   useEffect(() => {
     const updateSalonHandler = async () =>{
         let salon = await updateSalon(user!,{
           subscription : "active"
         })
-       salon && alert('You Are Online ! ')
+      //console.log(salon)
+      salon && alert('You Are Online ! ')
     } 
    user && updateSalonHandler()
   }, [user])

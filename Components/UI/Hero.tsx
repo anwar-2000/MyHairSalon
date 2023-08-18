@@ -25,7 +25,7 @@ const Hero = () => {
         <motion.button variants={bounceVariantsButton}>Explorez !</motion.button>
                 </motion.div>
             <motion.div className={classes.hero__video} initial="initial" animate="animate" variants={bounceVariantsVideo}>
-                 <div className={classes.video}>Video</div>
+                 <video autoPlay muted loop src="https://res.cloudinary.com/dbaiwyu3e/video/upload/v1692349076/E1D72776-AB3A-4ED9-AA1D-9AE72217944B_ndp05n.mp4" className={classes.video}></video>
             </motion.div>
   </motion.div>
 }
