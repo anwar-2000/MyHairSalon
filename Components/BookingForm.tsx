@@ -10,6 +10,7 @@ import { createAppointment } from "@/utils/AppointmentsHelpers";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {useRouter} from "next/navigation";
+import { json } from "stream/consumers";
 /**
  *
  * fetching days and closing days of the salon and pass it here as props
@@ -96,8 +97,15 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
           theme: "colored"
         });
     }else if(response){
-      
-      toast.info(`Check Your Email For A Receipt`,{
+      let email = await fetch('/api/sendmail',{
+        method : "POST",
+        headers :{ "Content-Type" : "application/json"},
+        body : JSON.stringify({
+          ...formData,
+          client : session?.user?.email
+        })
+      })
+      email  && toast.info(`Check Your Email For A Receipt`,{
         position: toast.POSITION.TOP_RIGHT,
         theme: "colored"
       });
