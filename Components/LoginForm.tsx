@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 
 
 
@@ -31,6 +32,7 @@ const LoginForm = () => {
         <button onClick={()=>HandleClick(email,password)}>
             Log In
         </button>
+        <Link href={'/create-account'} style={{fontSize : "0.8rem",textDecoration : "underline"}}>Je veux créer un Compte</Link>
   </div>
 }
 export default LoginForm;

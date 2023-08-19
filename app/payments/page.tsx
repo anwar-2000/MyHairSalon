@@ -1,9 +1,10 @@
 "use client"
 import classes from "@/styles/pages/paymentspage.module.css"
 import getStripe from '@/utils/getStripe';
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-const page =  ({ params }: { params: { user : string } }) => {
+const page =  () => {
+  const router = useRouter()
   const searchParams = useSearchParams();
   const user = searchParams.get('user');
   const handleStripe = async (choice : number) => {
@@ -41,10 +42,10 @@ const page =  ({ params }: { params: { user : string } }) => {
           </div>
           <div className="descr__payment">
             <div className="desc">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque beatae impedit at sapiente corrupti quibusdam.
+            Vous n&apos;êtes pas encore sûr ? Pas de problème ! Profitez de notre essai gratuit de 7 jours pour découvrir toutes les fonctionnalités incroyables que nous offrons. C&apos;est l&apos;occasion idéale pour vous familiariser avec notre plateforme et voir comment elle peut transformer votre salon de coiffure. N&apos;oubliez pas, c&apos;est totalement gratuit et sans engagement !
             </div>
             <div className="pay">
-              <button> GO ! </button>
+              <button onClick={()=>router.push(`/success?user=${user}`)}> GO ! </button>
             </div>
           </div>
               
@@ -57,7 +58,7 @@ const page =  ({ params }: { params: { user : string } }) => {
           </div>
           <div className="descr__payment">
             <div className="desc">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque beatae impedit at sapiente corrupti quibusdam.
+            Vous êtes convaincu et prêt à vous engager ? Notre abonnement de trois mois est fait pour vous ! Non seulement vous bénéficierez de tous les avantages de notre plateforme, mais vous économiserez également en vous abonnant pour une période plus longue. C&apos;est le choix parfait pour ceux qui sont prêts à transformer leur salon de coiffure et à offrir à leurs clients une expérience exceptionnelle
             </div>
             <div className="pay">
              <button onClick={()=>handleStripe(25)}> GO ! </button>
@@ -73,7 +74,7 @@ const page =  ({ params }: { params: { user : string } }) => {
           </div>
           <div className="descr__payment">
             <div className="desc">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque beatae impedit at sapiente corrupti quibusdam.
+            Prêt à passer au niveau supérieur ? Notre abonnement d&apos;un mois est parfait pour ceux qui veulent faire l&apos;expérience de tous les avantages de notre plateforme sur une période plus longue. Avec cet abonnement, vous aurez un accès complet à toutes nos fonctionnalités et bénéficierez d&apos;un soutien continu de notre équipe. C&apos;est le choix idéal pour ceux qui veulent améliorer leur salon de coiffure sans engagement à long terme.
             </div>
             <div className="pay">
             <button onClick={()=>handleStripe(10)}> GO ! </button>

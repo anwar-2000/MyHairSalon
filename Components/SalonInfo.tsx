@@ -27,7 +27,7 @@ interface Haircut {
   }
 
 const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,haircuts,description,weekends,closedDays,openDays}) => {
-    const [openDay, setOpenDay] = useState(openDays.length > 0 ? openDays[0] : null);
+    const [openDay, setOpenDay] = useState(openDays?.length > 0 ? openDays[0] : null);
    // console.log(openDay,closedDays,weekends);
     const [updatedName, setupdatedName] = useState(name)
     const [updatedDescription, setupdatedDescription] = useState(description)
@@ -45,12 +45,15 @@ const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,hairc
     const [newOpenDays, setNewOpenDays] = useState<any[]>([]);
     const [NewCloseDays, setNewCloseDays] = useState<any[]>([]);
     
-    //extracting the weekends
-    const weekend1 = days.indexOf(weekends[0]);
-    const weekend2 = days.indexOf(weekends[1]);
+  //extracting the weekends
+let weekend1:number, weekend2: number;
+if (weekends && weekends.length >= 2) {
+  weekend1 = days.indexOf(weekends[0]);
+  weekend2 = days.indexOf(weekends[1]);
+}
 
     //extracting the closed day
-    const closedThisDay = closedDays[0]?.date ;
+    const closedThisDay = closedDays &&  closedDays[0]?.date ;
 
 
 
@@ -128,7 +131,7 @@ const tileClassName = ({ date = new Date() }) => {
             openDays : newOpenDays,
             closedDays : NewCloseDays
         }
-        console.log(formData)
+        //console.log(formData)
 
         let updatedSalon = null;
         if(formData && !name){
@@ -177,11 +180,12 @@ const tileClassName = ({ date = new Date() }) => {
             {days.map((day, index) => (
                 <label key={index}>
                     <input
-                        type="checkbox"
-                        checked={selectedDays.includes(day) || day === weekends[0] || day === weekends[1] }
-                        onChange={() => handleDaySelection(day)}
-                    />
-                    {day}
+    type="checkbox"
+    checked={selectedDays.includes(day) || (weekends && weekends.length >= 2 && (day === weekends[0] || day === weekends[1]))}
+    onChange={() => handleDaySelection(day)}
+/>
+{day}
+
                 </label>
             ))}
         </div>

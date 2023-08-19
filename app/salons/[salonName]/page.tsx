@@ -9,7 +9,7 @@ import { getCurrentUser } from '@/utils/session'
 import Link from 'next/link'
 
 
-
+export const dynamic = 'force-dynamic'
 
 export default async function Page({ params }: { params: { salonName: string } }) {
     const session = await getCurrentUser();
@@ -28,10 +28,10 @@ export default async function Page({ params }: { params: { salonName: string } }
           </div>
           <div className={classes.haircuts__artists}>
                   <div className={classes.artists}>
-                  <h1>Artistes</h1>
+                  <h1>Coiffeurs (euse)</h1>
                     {
                       salon[0]?.artists.map((artist:any,index:number)=>(
-                          <h5 key={index}>{artist.name} - {artist.price}€</h5>
+                          <h5 key={index}>{artist.name} - {artist.price}€ (coupe simple)</h5>
                       ))
                     }
                   </div>
@@ -39,14 +39,14 @@ export default async function Page({ params }: { params: { salonName: string } }
                     <h1>Coupes</h1>
                     {
                       salon[0]?.haircuts.map((haircut:any,index:number)=>(
-                          <h5 key={index}>{haircut.name} - {haircut.price}€</h5>
+                          <h5 key={index}>{haircut.name} - {haircut.price}€ </h5>
                       ))
                     }
                   </div>
           </div>
                    { session ? 
                     <BookingForm session={session} image={salon[0].image} salonName={salon[0].name} appointments={appointments} artists={salon[0].artists} haircuts={salon[0].haircuts} weekends={salon[0].weekends} closedDays={salon[0].closedDays} openDays={salon[0].openDays}/> : 
-                    <Link href="/login" className={classes.link} style={{border : "1px black solid",padding:"0.6rem"}}>LOGIN TO YOUR  ACCOUNT TO BOOK A HAIRCUT</Link>
+                    <Link href="/login" className={classes.link} style={{border : "1px black solid",padding:"0.6rem"}}>Connectez vous pour résèrver </Link>
                     }
   </div>
 }

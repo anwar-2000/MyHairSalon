@@ -81,6 +81,9 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
   };
 
   const handleConfirmation = async () =>{
+    let dateObject = new Date(date.dateTime!);
+    dateObject.setHours(dateObject.getHours() + 1);
+   let updatedDate = dateObject.toISOString();
     let formData = {
       salon : salonName ,
       customer : session?.user?.email,
@@ -101,6 +104,7 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
         headers :{ "Content-Type" : "application/json"},
         body : JSON.stringify({
           ...formData,
+          date : updatedDate,
           lien : image,
           client : session?.user?.email
         })

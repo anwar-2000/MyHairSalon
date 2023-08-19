@@ -9,6 +9,8 @@ import { createMongoConnection } from '@/database/Conn'
 import UserModel from '@/models/UserModel'
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic'
+
 
 const Index = async () => {
   const session = await getCurrentUser();
@@ -26,7 +28,11 @@ const Index = async () => {
         <Suspense fallback={<p>Loading Infos ...%</p>}>
           <small>{user[0].username} | {user[0].role} | {salon[0]?.name} </small>
           <h1>{user[0].email}</h1>
-          {salon[0].subscription === "inactive" ? <Link href={`/payments?user=${session.user?.email}`} style={{textAlign : "center"}}>Publier Mon Salon</Link> :<p>Salon En Ligne</p>}
+          {salon && salon[0] ? 
+    salon[0].subscription === "inactive" ? 
+        <Link href={`/payments?user=${session.user?.email}`} style={{textAlign : "center",color : "red", textDecoration : "underline"}}>Votre Salon n&apos;est pas actif &#x274C;</Link> 
+        : <p style={{color : "green"}}>Salon En Ligne &#x2705;</p> 
+    : <p style={{color : "green"}}>Créez votre Salon</p>}
         </Suspense>
     </div>
     <LogOutButton />

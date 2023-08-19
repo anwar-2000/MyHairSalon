@@ -24,7 +24,7 @@ const page = () => {
   
  // console.log(user)
   return <div>
-    <button onClick={()=>router.push('/profile')}>GO TO PROFILE</button>
+    <button onClick={()=>router.push('/profile')} style={{background : "none", color : "black" , border : "solid 1px black",padding : "0.6rem"}}>GO TO PROFILE</button>
   </div>
 }
 
