@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       html: `
       <p>
         <a href="https://monsalonconnect.com/salons/${salon}">
-          <img src=${lien} alt='${salon} image ' width="300">
+          <img src=${lien} alt='${salon} image ' width="300" height="250">
         </a>
       </p>
       <p>
