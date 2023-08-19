@@ -10,7 +10,6 @@ import { createAppointment } from "@/utils/AppointmentsHelpers";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {useRouter} from "next/navigation";
-import { json } from "stream/consumers";
 /**
  *
  * fetching days and closing days of the salon and pass it here as props
@@ -20,7 +19,7 @@ interface DateType {
   justDate: Date | null;
   dateTime: Date | null;
 }
-const BookingForm = ({ salonName , session , artists , weekends , closedDays , openDays , haircuts , appointments }: any) => {
+const BookingForm = ({ salonName , session , artists , image , weekends , closedDays , openDays , haircuts , appointments }: any) => {
   const router = useRouter()
   const [showForm, setshowForm] = useState(false);
   const [artistChosen, setArtistChosen] = useState("");
@@ -102,6 +101,7 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
         headers :{ "Content-Type" : "application/json"},
         body : JSON.stringify({
           ...formData,
+          lien : image,
           client : session?.user?.email
         })
       })
