@@ -28,7 +28,6 @@ const MyArtists:React.FC<Props> = ({artists,owner}) => {
     setPrice(0);
   };
   const savingData = async (owner:string) =>{
-
     let formData = {
       artists : newArtists
     }

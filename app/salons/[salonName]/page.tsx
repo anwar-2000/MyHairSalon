@@ -28,7 +28,7 @@ export default async function Page({ params }: { params: { salonName: string } }
           </div>
           <div className={classes.haircuts__artists}>
                   <div className={classes.artists}>
-                  <h1>Artists</h1>
+                  <h1>Artistes</h1>
                     {
                       salon[0]?.artists.map((artist:any,index:number)=>(
                           <h5 key={index}>{artist.name} - {artist.price}€</h5>
@@ -36,7 +36,7 @@ export default async function Page({ params }: { params: { salonName: string } }
                     }
                   </div>
                   <div className={classes.haircuts}>
-                    <h1>HairCuts</h1>
+                    <h1>Coupes</h1>
                     {
                       salon[0]?.haircuts.map((haircut:any,index:number)=>(
                           <h5 key={index}>{haircut.name} - {haircut.price}€</h5>

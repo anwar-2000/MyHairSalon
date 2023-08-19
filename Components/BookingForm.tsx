@@ -151,22 +151,34 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
           {artistChosen !== "" && (
             <div className={classes.form}>
               {date.justDate ? (
-                <div className={classes.times}>
-                  {times &&
-                    times.map((time, index) => (
-                      
-                        <button
-                        key={`time-${index}`}
-                          onClick={() =>
-                            setDate((prev) => ({ ...prev, dateTime: time }))
-                          }
-                          disabled={isSlotTaken(date.justDate as Date, time , artistChosen)}
-                        >
-                          {format(time, "kk:mm")}
-                        </button>
-                  
-                    ))}
-                </div>
+               <div className={classes.times}>
+                {times &&
+    times
+      .filter((time) => isSlotTaken(date.justDate as Date, time, artistChosen))
+      .map((time, index) => (
+        <button
+          key={`time-${index}`}
+          disabled={true}
+          className='taken'
+        >
+          {format(time, "kk:mm")}
+        </button>
+    ))}
+               {times &&
+                 times
+                   .filter((time) => !isSlotTaken(date.justDate as Date, time, artistChosen))
+                   .map((time, index) => (
+                     <button
+                       key={`time-${index}`}
+                       onClick={() =>
+                         setDate((prev) => ({ ...prev, dateTime: time }))
+                       }
+                     >
+                       {format(time, "kk:mm")}
+                     </button>
+                   ))}
+             </div>
+             
               ) : (
                 <Calendar
                   minDate={new Date()}
