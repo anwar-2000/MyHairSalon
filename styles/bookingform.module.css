@@ -66,7 +66,6 @@
     color: black;
     cursor: not-allowed;
   }
-
 .confirm{
     padding-top: 2rem;
     display: flex;
@@ -103,20 +102,25 @@
 
 @media screen and (max-width: 420px) {
     .times button {
-      background-color: black;
-      color: white;
-      border: none;
+        background-color : rgb(198, 194, 194);
+        color: rgb(0, 0, 0);
+        border: solid 0.5px black;
       padding: 0.8rem 1rem; /* Adjust padding as needed */
       border-radius: 5px;
       cursor: pointer;
     }
   
     .times button:disabled {
-      background-color: rgb(188, 46, 46);
-      color: black;
-      cursor: not-allowed;
+        background-color: rgb(188, 46, 46);
+        color: black;
+        cursor: not-allowed;
     }
-  
+    .times button.taken {
+        background-color: rgb(188, 46, 46); /* red background */
+        color: black;
+        cursor: not-allowed;
+      }
+    
     .confirm h5 {
       font-size: 1rem;
     }

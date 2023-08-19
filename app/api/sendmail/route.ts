@@ -8,7 +8,7 @@ const password = process.env.EMAIL__PASS
 export async function POST(req: Request) {
   try {
     const {client , salon , date , artist , haircut , lien} = await req.json();
-   // console.log(client,artist,date,artist,haircut)
+    console.log(client,artist,date,artist,haircut)
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
       service: 'gmail', // use 'gmail' or any other service you prefer
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
         </a>
       </p>
       <p>
-        Cher <span style="font-weight: bold;">${client.name}</span>,<br><br>
+        Cher <span style="font-weight: bold;">${client}</span>,<br><br>
         Votre rendez-vous au ${salon} le ${date} avec ${artist} pour la coupe ${haircut} a été confirmé.<br><br>
         Cordialement,<br>
         Mon Salon Connect
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
       console.log('Message envoyé: %s', info.messageId);
     });
 
-    return  NextResponse.json({message : 'email sent'});
+    return  NextResponse.json({message : 'Message envoyé'});
   } catch (error) {
     console.error(error);
     return  NextResponse.json({error});
