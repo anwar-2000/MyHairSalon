@@ -61,15 +61,23 @@ export async function POST(req: Request) {
     </p>    
     `    };
 
-    // send mail with defined transport object
+
     transporter.sendMail(mailOptions, (error: any, info: { messageId: any; }) => {
       if (error) {
         return console.log(error);
       }
-      console.log('Message envoyé: %s', info.messageId);
+      console.log('client email sent: %s', info.messageId);
     });
 
-    return  NextResponse.json({message : 'Message envoyé'});
+ 
+transporter.sendMail(mailOptions2, (error, info) => {
+  if (error) {
+    return console.log(error);
+  }
+  console.log('owner email sent: %s', info.messageId);
+});
+
+    return  NextResponse.json({message : 'emails sent to both'});
   } catch (error) {
     console.error(error);
     return  NextResponse.json({error});
