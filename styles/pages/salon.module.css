@@ -23,6 +23,14 @@
     justify-content: center;
     gap: 0.5rem;
 }
+.infos h1{
+    width: 80%;
+    text-align: center;
+}
+.infos small{
+    width: 80%;
+    text-align: center;
+}
 .haircuts__artists{
     width: 90%;
     transform: translateX(1.8rem);
@@ -58,6 +66,16 @@
         flex-direction: column;
         transform: translateX(-0.2rem);
         gap: 1.5rem;
+        align-items: center;
+        justify-content: center;
+    }
+    .infos h1{
+        width: 80%;
+        text-align: center;
+    }
+    .infos small{
+        width: 80%;
+        text-align: center !important;
     }
     .haircuts{
         transform: translateX(0rem);

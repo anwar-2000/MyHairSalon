@@ -4,6 +4,8 @@ import classes from "@/styles/salonInfo.module.css"
 import { addSalon, days, updateSalon } from '@/utils/salonHelpers';
 import HaircutsForm from './HaircutsForm';
 import Calendar from 'react-calendar';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "react-calendar/dist/Calendar.css";
 import { add, format, setHours, setMinutes, startOfHour } from 'date-fns';
 
@@ -69,7 +71,7 @@ const tileClassName = ({ date = new Date() }) => {
     const getTimes = () => {
         const  justDate  = new Date();
         const beginning = setHours(setMinutes(startOfHour(justDate), 0), 9); // Set starting time to 9:00 AM
-        const end = setHours(setMinutes(startOfHour(justDate), 0), 17);
+        const end = setHours(setMinutes(startOfHour(justDate), 0), 21);
         const interval = 30; // minutes
     
         const times = [];
@@ -83,7 +85,8 @@ const tileClassName = ({ date = new Date() }) => {
     
       const times = getTimes();
 
-    const handleDaySelection = (day: string) => {
+    const handleDaySelection = (e:React.ChangeEvent<HTMLInputElement> , day: string) => {
+      e.preventDefault();
         if (selectedDays.includes(day)) {
             setSelectedDays(selectedDays.filter(selectedDay => selectedDay !== day));
         } else {
@@ -131,7 +134,7 @@ const tileClassName = ({ date = new Date() }) => {
             openDays : newOpenDays,
             closedDays : NewCloseDays
         }
-        //console.log(formData)
+        console.log(formData)
 
         let updatedSalon = null;
         if(formData && !name){
@@ -140,7 +143,10 @@ const tileClassName = ({ date = new Date() }) => {
         updatedSalon = await updateSalon(email,formData);
         }
         if(updatedSalon){
-            //console.log(updatedSalon);  
+          toast.success("Done", {
+            position: toast.POSITION.TOP_RIGHT,
+            theme: "colored"
+        });  
         }
       }
 
@@ -182,7 +188,7 @@ const tileClassName = ({ date = new Date() }) => {
                     <input
     type="checkbox"
     checked={selectedDays.includes(day) || (weekends && weekends.length >= 2 && (day === weekends[0] || day === weekends[1]))}
-    onChange={() => handleDaySelection(day)}
+    onChange={(e) => handleDaySelection(e,day)}
 />
 {day}
 
@@ -211,7 +217,9 @@ const tileClassName = ({ date = new Date() }) => {
                   {times &&
                     times.map((time, index) => (
                       <div key={`time-${index}`}>
-                        <button  onClick={()=>setOpenHour(format(time,"kk:mm"))}>
+                        <button  onClick={(e)=>{
+                          e.preventDefault();
+                          setOpenHour(format(time,"kk:mm"))}}>
                           {format(time, "kk:mm")}
                         </button>
                       </div>
@@ -226,7 +234,9 @@ const tileClassName = ({ date = new Date() }) => {
                   {times &&
                     times.map((time, index) => (
                       <div key={`time-${index}`}>
-                        <button  onClick={()=>setClosingHour(format(time,"kk:mm"))}>
+                        <button  onClick={(e)=>{
+                          e.preventDefault();
+                          setClosingHour(format(time,"kk:mm"))}}>
                           {format(time, "kk:mm")}
                         </button>
                       </div>

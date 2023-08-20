@@ -19,7 +19,7 @@ interface DateType {
   justDate: Date | null;
   dateTime: Date | null;
 }
-const BookingForm = ({ salonName , session , artists , image , weekends , closedDays , openDays , haircuts , appointments }: any) => {
+const BookingForm = ({ salonName , owner,  session , artists , image , weekends , closedDays , openDays , haircuts , appointments }: any) => {
   const router = useRouter()
   const [showForm, setshowForm] = useState(false);
   const [artistChosen, setArtistChosen] = useState("");
@@ -83,8 +83,9 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
   const handleConfirmation = async () =>{
     let dateObject = new Date(date.dateTime!);
     dateObject.setHours(dateObject.getHours() + 1);
-   let updatedDate = dateObject.toISOString();
+    let updatedDate = dateObject.toISOString();
     let formData = {
+      owner,
       salon : salonName ,
       customer : session?.user?.email,
       artist : artistChosen,

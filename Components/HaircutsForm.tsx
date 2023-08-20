@@ -14,8 +14,14 @@ const HaircutsForm: React.FC<Props> = ({haircuts , addHaircut}) => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
 
+  const handleDelete = (index: number) => {
+    const haircutsCopy = [...haircuts];
+    haircutsCopy.splice(index, 1);
+    addHaircut(haircutsCopy);
+  };
+  
+
   const handleAdd = () => {
-    
     if(name==="" || price===""){
         return;
     }
@@ -42,13 +48,15 @@ const HaircutsForm: React.FC<Props> = ({haircuts , addHaircut}) => {
         <button type="button" onClick={handleAdd}>Add</button>
 </div>
       
-      <ul>
-        {haircuts && haircuts.map((haircut, index) => (
-          <li key={index}>
-            {haircut.name} - {haircut.price} €
-          </li>
-        ))}
-      </ul>
+<ul>
+  {haircuts && haircuts.map((haircut, index) => (
+    <li key={index}>
+      {haircut.name} - {haircut.price} €
+      <button onClick={() => handleDelete(index)} style={{background : "none", color : "red", border : "none" ,  marginLeft : "0.5rem"}} >Delete</button>
+    </li>
+  ))}
+</ul>
+
     </div>
   );
 };
