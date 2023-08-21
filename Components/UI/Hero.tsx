@@ -35,7 +35,7 @@ const Hero = () => {
       <motion.div className={classes.hero__video} initial="initial" animate="animate" variants={bounceVariantsVideo}>
         <motion.video
           controls
-          src="https://res.cloudinary.com/dbaiwyu3e/video/upload/v1692630381/6F87A678-12E0-4796-A670-06193CC40629_msqjoe.mp4"
+          src="https://res.cloudinary.com/dbaiwyu3e/video/upload/v1692631721/3283860F-65F8-4D71-B883-D3797B7F39B4_jktwll.mp4"
           className={classes.video}
           style={{ width: '100%' }} 
         ></motion.video>
