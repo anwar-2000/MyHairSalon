@@ -29,12 +29,15 @@
     gap : 0.5rem;
 }
 .testomenial p {
-    width : 80%;
+    width : 50%;
     font-size: large;
 }
 @media screen and (max-width : 720px) {
     .testomenial{
         width : 250px;
         height : 250px;
+    }
+    .testomenial p {
+        width : 250px;
     }
 }

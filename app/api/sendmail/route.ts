@@ -42,7 +42,6 @@ export async function POST(req: Request) {
       to: client,
       subject: `RDV au ${salon} pour le ${date}`,
       html: `
-      <div style="display : flex; align-items : center; justify-content : center; flex-direction:column;text-align:center">
       <p>
         <a href="https://monsalonconnect.com/salons/${salon}">
           <img src=${lien} alt='${salon} image ' width="300" height="250">
@@ -55,8 +54,7 @@ export async function POST(req: Request) {
         <p>Mon Salon Connect</p>
         <a href="https://monsalonconnect.com">https://monsalonconnect.com</a>
       </p>
-      
-      </div>
+    
       `
     };
 
@@ -65,7 +63,6 @@ export async function POST(req: Request) {
       to: owner,
       subject: `Rendez-vous au votre salon : ${salon}`,
       html: `
-      <div style="display : flex; align-items : center; justify-content : center; flex-direction:column;gap:0.6rem;text-align:center">
       <p>
       <a href="https://monsalonconnect.com/salons/${salon}">
         <img src=${lien} alt='${salon} image' width="300" height="250">
@@ -78,8 +75,7 @@ export async function POST(req: Request) {
       <p>Mon Salon Connect</p>
       <a href="https://monsalonconnect.com">https://monsalonconnect.com</a>
     </p> 
-    </div>   
-      `
+          `
     };
 
     await Promise.all([

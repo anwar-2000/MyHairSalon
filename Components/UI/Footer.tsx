@@ -6,7 +6,7 @@ import {BsFacebook , BsInstagram } from "react-icons/bs"
 const Footer = () => {
   return <div className={classes.footer_container}>
             <Link href="">Mon Salon Connect</Link>
-            <Link href="">@copyright 2023</Link>
+            <Link href="">&#x00A9;copyright 2023</Link>
             <div className={classes.icons}>
                   <BsFacebook color='black' size={20}/>
                   <BsInstagram color='black' size={20} />

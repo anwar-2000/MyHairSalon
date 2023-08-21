@@ -18,7 +18,7 @@
     position: absolute;
     justify-content: center;
     transform: translateX(-6rem);
-    background-color: #4d4b4b;
+    background-color: #494848;
     z-index: 100 !important;
 }
 .navbarmobile__container ul li{

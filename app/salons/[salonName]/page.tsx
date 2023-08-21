@@ -15,6 +15,7 @@ export default async function Page({ params }: { params: { salonName: string } }
     const session = await getCurrentUser();
     const salon = await fetchSalonByName(params.salonName);
     const appointments = await fetchSalonAppointments(params.salonName)
+  //  console.log(salon[0].owner)
     //console.log(appointments);
 
   return <div className={classes.main__container}>
