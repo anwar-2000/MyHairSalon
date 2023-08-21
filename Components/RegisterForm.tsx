@@ -13,10 +13,12 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [accountType, setAccountType] = useState("customer"); // Default value
+  const [accountType, setAccountType] = useState("customer"); 
+  const [creating, setCreating] = useState(false);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    setCreating(true)
     if(username === "" || email === "" || password === "" || confirmPassword ===""){
       toast.info('Le Formulaire doit être remplis ',{
         position: toast.POSITION.TOP_RIGHT,
@@ -24,7 +26,7 @@ const RegisterForm = () => {
       });
       return;
     }
-    // Create an object with form data
+   
     const formData = {
       username,
       email,
@@ -45,6 +47,7 @@ const RegisterForm = () => {
     } catch (error) {
       console.error("Error creating account:", error);
     }
+    setCreating(false)
   };
 
   return (
@@ -57,7 +60,7 @@ const RegisterForm = () => {
         <option value="customer">Customer</option>
         <option value="salonOwner">Salon Owner</option>
       </select>
-      <button onClick={handleSubmit}>Create Account</button>
+      <button onClick={handleSubmit}>{ creating ? 'Création de votre compte' : 'Créer un compte'}</button>
     </div>
   );
 };

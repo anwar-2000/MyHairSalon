@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   robots: 'index, follow',
   'og:title': 'Mon Salon Connect - Votre Portail de Beauté et de Coiffure',
   'og:description': 'Mon Salon Connect est une plateforme innovante conçue pour les salons de coiffure et leurs clients. Les salons peuvent facilement publier leurs informations, ajouter des artistes et des coupes de cheveux, et bien plus encore. Les clients ont la liberté de choisir leurs artistes préférés et les coupes de cheveux qu\'ils souhaitent. Rejoignez notre communauté et découvrez une nouvelle façon de gérer votre salon de coiffure.',
-  'og:image': 'https://monsalonconnect.com/logo.png',
+  'og:image': 'https://monsalonconnect.com/logo1.png',
   'og:url': 'https://monsalonconnect.com',
   'og:type': 'website',
   author: 'monSalonConnect'

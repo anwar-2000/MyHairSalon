@@ -21,7 +21,7 @@ const Navbar = async () => {
                     </div>
             </div>
             <div className={classes.nav__secondDiv}>
-                    <Link href="/login" >Login</Link>
+                    <Link href="/login" >Se connecter</Link>
                    {session ? <Link href="/profile" >Profile</Link> : <Link href="/create-account" >Créer un compte</Link>}
             </div>
             <div className={classes.hamburger} style={{zIndex : 160}}>

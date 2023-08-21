@@ -8,6 +8,7 @@ import SalonModel from '@/models/SalonModel'
 import { createMongoConnection } from '@/database/Conn'
 import UserModel from '@/models/UserModel'
 import Link from 'next/link'
+import Head from 'next/head'
 
 export const dynamic = 'force-dynamic'
 
@@ -18,50 +19,65 @@ const Index = async () => {
       redirect('/login');
   }
   const user = await fetchMyInfos(session?.user?.email!);
-  //console.log(user)
   let salon = null;
   if(user[0].role === "salonOwner"){
       salon = await fetchMySalon(user[0].email);
+  }
 
-  return <div className={classes.profile__container}>
+  return <>
+  <div className={classes.profile__container}>
       <div className={classes.infos}>
         <Suspense fallback={<p>Loading Infos ...%</p>}>
-          <small>{user[0].username} | {user[0].role} | {salon[0]?.name} </small>
+          <small>{user[0].username} | {user[0].role} | {salon && salon[0] ? salon[0]?.name : 'No Salon'} </small>
           <h1>{user[0].email}</h1>
-          {salon && salon[0] ? 
-    salon[0].subscription === "inactive" ? 
-        <Link href={`/payments?user=${session.user?.email}`} style={{textAlign : "center",color : "red", textDecoration : "underline"}}>Votre Salon n&apos;est pas actif &#x274C;</Link> 
-        : <p style={{color : "green"}}>Salon En Ligne &#x2705;</p> 
-    : <p style={{color : "green"}}>Créez votre Salon</p>}
+          {user[0].role === "salonOwner" ? 
+    (salon && salon[0] ? 
+        (salon[0].subscription === "inactive" ? 
+            <Link href={`/payments?user=${session.user?.email}`} style={{textAlign : "center",color : "red", textDecoration : "underline"}}>Votre Salon n'est pas actif ❌</Link> 
+            : <p style={{color : "green"}}>Salon En Ligne ✅</p>) 
+        : <p style={{color : "green"}}>Créez votre Salon</p>)
+    : <p style={{color : "red"}}>Vous ne pouvez pas créer un salon</p>}
         </Suspense>
     </div>
     <LogOutButton />
-    <ProfileMain user={user} salon={salon[0]}/> 
+    <ProfileMain user={user} salon={salon && salon[0] ? salon[0] : null}/> 
     </div>
-}
+    </>
 }
 export default Index
 
 
-const fetchMyInfos = async (user : string)  =>{
+const fetchMyInfos = async (user : string) => {
   createMongoConnection() //establishing connection to db
   const userEmail = decodeURIComponent(user)
-  const me = await UserModel.find({ email: userEmail }).lean();
+  let me = await UserModel.find({ email: userEmail });
   if(!me){
     return []
   }
+  // Convert each document to a plain JavaScript object
+  me = me.map(doc => {
+    const docObject = doc.toObject();
+    // Remove the properties that are causing issues
+    delete docObject._id;
+    return docObject;
+  });
   return me;
 }
 
-
-
-
-const fetchMySalon = async (owner : string)  =>{
+const fetchMySalon = async (owner : string) => {
   createMongoConnection() //establishing connection to db
   const ownerEmail = decodeURIComponent(owner)
-  const salon = await SalonModel.find({ owner: ownerEmail }).lean();
+  let salon = await SalonModel.find({ owner: ownerEmail });
   if(!salon){
     return []
   }
+  // Convert each document to a plain JavaScript object
+  salon = salon.map(doc => {
+    const docObject = doc.toObject();
+    // Remove the properties that are causing issues
+    delete docObject._id;
+    return docObject;
+  });
   return salon;
 }
+

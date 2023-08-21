@@ -22,6 +22,7 @@ interface DateType {
 const BookingForm = ({ salonName , owner,  session , artists , image , weekends , closedDays , openDays , haircuts , appointments }: any) => {
   const router = useRouter()
   const [showForm, setshowForm] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [artistChosen, setArtistChosen] = useState("");
   const [openDay, setOpenDay] = useState(openDays[0]);
   const [haircutChosen, setHaircutChosen] = useState("");
@@ -81,6 +82,7 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
   };
 
   const handleConfirmation = async () =>{
+    setSaving(true)
     let dateObject = new Date(date.dateTime!);
     dateObject.setHours(dateObject.getHours() + 1);
     let updatedDate = dateObject.toISOString();
@@ -114,7 +116,7 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
         position: toast.POSITION.TOP_RIGHT,
         theme: "colored"
       });
-    
+      setSaving(false)
       router.push('/profile')
     }
   }
@@ -134,8 +136,6 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
     return isTaken;
   };
   
-
-
   return (
     <div className={classes.form__container}>
       <div className={classes.appintments}>
@@ -215,7 +215,7 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
                       <h6>{haircutChosen}</h6>
                       <h6>{date.dateTime && date.dateTime.toLocaleString()}</h6>
                       <button onClick={handleConfirmation}>
-                          Confirm
+                        {saving ? 'confirmation ...' : 'confirm'}
                       </button>
 
                 </div>
