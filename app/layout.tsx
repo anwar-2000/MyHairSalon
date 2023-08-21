@@ -4,7 +4,7 @@ import Navbar from '@/Components/UI/Navbar'
 import Footer from '@/Components/UI/Footer'
 import { ToastContainer } from 'react-toastify'
 import { Providers } from '@/redux/Provider'
-
+import { Analytics } from '@vercel/analytics/react';
 
 type Metadata = {
   title: string;
@@ -66,6 +66,7 @@ export default function RootLayout({
         {children}
         <Footer />
         </Providers>
+        <Analytics />
         </body>
     </html>
     </>

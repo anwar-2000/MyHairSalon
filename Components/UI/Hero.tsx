@@ -34,12 +34,10 @@ const Hero = () => {
       </motion.div>
       <motion.div className={classes.hero__video} initial="initial" animate="animate" variants={bounceVariantsVideo}>
         <motion.video
-          autoPlay
-          muted
-          loop
-          src="https://res.cloudinary.com/dbaiwyu3e/video/upload/v1692349076/E1D72776-AB3A-4ED9-AA1D-9AE72217944B_ndp05n.mp4"
+          controls
+          src="https://res.cloudinary.com/dbaiwyu3e/video/upload/v1692630381/6F87A678-12E0-4796-A670-06193CC40629_msqjoe.mp4"
           className={classes.video}
-          style={{ width: '100%' }} // Adjust the width as needed
+          style={{ width: '100%' }} 
         ></motion.video>
       </motion.div>
     </motion.div>
