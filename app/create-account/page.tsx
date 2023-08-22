@@ -5,7 +5,7 @@ interface Props {}
 
 const Index = () => {
   return <div className={classes.registerPage__container}>
-        <h1>Create Account </h1>
+        <h1>Créer Un Compte</h1>
         <RegisterForm />
   </div>
 }

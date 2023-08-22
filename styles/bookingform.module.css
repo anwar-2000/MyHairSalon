@@ -114,9 +114,6 @@
 
 @media screen and (max-width: 420px) {
     .times button {
-        background-color : rgb(198, 194, 194);
-        color: rgb(0, 0, 0);
-        border: solid 0.5px black;
       padding: 0.8rem 1rem; /* Adjust padding as needed */
       border-radius: 5px;
       cursor: pointer;
