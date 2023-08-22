@@ -30,6 +30,7 @@ export async function POST(req: Request)  {
       line_items: lineitems,
       success_url: `${origin}/success?user=${user}`,
       cancel_url: `${origin}/canceled`,
+      discounts: [{coupon: "qjGFPmh9"}],
     };
 
     const session: Stripe.Checkout.Session = await stripe.checkout.sessions.create(params);

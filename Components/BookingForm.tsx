@@ -97,7 +97,7 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
     //console.log(formData)
     const response = await createAppointment(formData);
     if(!response){
-        toast.info('Error While Booking',{
+        toast.info('Erreur est survenue lors de la confirmation',{
           position: toast.POSITION.TOP_RIGHT,
           theme: "colored"
         });
@@ -112,7 +112,7 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
           client : session?.user?.email
         })
       })
-      email  && toast.info(`Check Your Email For A Receipt`,{
+      email  && toast.info(`Verifiez votre mail pour la confirmation !`,{
         position: toast.POSITION.TOP_RIGHT,
         theme: "colored"
       });
@@ -139,11 +139,12 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
   return (
     <div className={classes.form__container}>
       <div className={classes.appintments}>
-        <button onClick={() => setshowForm(true)}>MAKE AN APPOINTMENT</button>
+        <button onClick={() => setshowForm(true)}>Je Prends Mon RDV</button>
       </div>
       {showForm && (
         <>
          {artistChosen === "" && <div className={classes.artists}>
+           <h1>Avec : ?</h1>
             {artists.map((artist: any, index: number) => (
               <button
                 key={index}
@@ -184,7 +185,8 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
                    ))}
              </div>
              
-              ) : (
+              ) : <>
+                <h1>Le :</h1>
                 <Calendar
                   minDate={new Date()}
                   /**closed day */
@@ -195,13 +197,13 @@ const endHour = parseInt(openDay.endTime.split(':')[0], 10);
                   }
                   tileClassName={tileClassName}
                 />
-              )}
+              </>}
             </div>
           )}
           {date.dateTime &&
             <select name="" id="" onChange={(e)=>setHaircutChosen(e.target.value)}>
               <option value="choose" disabled selected>
-                     Choose a haircut
+                     je choisis la coupe
                </option>
                 {haircuts.map((haircut:any,index : number)=>(
                     <option key={index} value={haircut.name} >{haircut.name}</option>

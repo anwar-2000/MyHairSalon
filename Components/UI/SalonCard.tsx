@@ -14,8 +14,8 @@ const SalonCard = ({salon} : any) => {
         <div className={classes.infos}>
             <h1>{salon.name}</h1>
             <div className={classes.details}>
-              <p>{salon.artists.length} Artists</p>
-              <p>{salon.haircuts.length} Haircuts</p>
+              <p>{salon.artists.length} Coiffeurs</p>
+              <p>{salon.haircuts.length} Coupes</p>
             </div>
         </div>
   </div>

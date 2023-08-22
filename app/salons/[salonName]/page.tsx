@@ -7,6 +7,7 @@ import BookingForm from '@/Components/BookingForm'
 import Appointment from '@/models/AppointmentModel'
 import { getCurrentUser } from '@/utils/session'
 import Link from 'next/link'
+import Review from '@/Components/Review'
 
 
 export const dynamic = 'force-dynamic'
@@ -49,6 +50,7 @@ export default async function Page({ params }: { params: { salonName: string } }
                     <BookingForm session={session} owner={salon[0].owner} image={salon[0].image} salonName={salon[0].name} appointments={appointments} artists={salon[0].artists} haircuts={salon[0].haircuts} weekends={salon[0].weekends} closedDays={salon[0].closedDays} openDays={salon[0].openDays}/> : 
                     <Link href="/login" className={classes.link} style={{border : "1px black solid",padding:"0.6rem"}}>Connectez vous pour résèrver </Link>
                     }
+                    {/*<Review /> */}
   </div>
 }
 
