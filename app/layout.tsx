@@ -5,6 +5,7 @@ import Footer from '@/Components/UI/Footer'
 import { ToastContainer } from 'react-toastify'
 import { Providers } from '@/redux/Provider'
 import { Analytics } from '@vercel/analytics/react';
+import '@smastrom/react-rating/style.css' 
 
 type Metadata = {
   title: string;
