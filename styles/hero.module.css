@@ -10,7 +10,7 @@
 .hero__first h1{
     align-self: flex-start;
     font-weight: bold;
-    font-size : 3.5rem;
+    font-size : 3rem;
     transform: translate(3rem,-3rem);
     color : #535353;
     width : 60vw;
