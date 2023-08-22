@@ -15,8 +15,8 @@ export async function GET(req: Request , res : Response) {
     const place = searchParams.get("Place");
     let salons = null;
     const ownerEmail = searchParams.get("owner");
-    const count = searchParams.get("artists");
-
+    
+    
     if(ownerEmail){
       salons = await SalonModel.find({ owner: ownerEmail });
     }

@@ -1,10 +1,26 @@
 'use client'
 
-import { useState } from 'react'
-import { Rating as ReactRating } from '@smastrom/react-rating'
+import React from 'react';
+import classes from '@/styles/rating.module.css';
+import {LiaStarSolid} from "react-icons/lia"
 
-export function Rating({value}:{value:number}) {
-  const [rating, setRating] = useState<number>(value || 0)
-
-  return <ReactRating style={{ maxWidth: 100 }} value={rating} onChange={setRating} />
+interface RatingProps {
+  value: number;
+  onChange: (newValue: number) => void;
 }
+
+const Rating: React.FC<RatingProps> = ({ value, onChange }) => {
+  const renderStars = () => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+          <LiaStarSolid  key={i}  color={'yellow'} size={20}  onClick={() => onChange(i)} />
+      );
+    }
+    return stars;
+  };
+
+  return <div className={classes.rating}>{renderStars()}</div>;
+};
+
+export default Rating;

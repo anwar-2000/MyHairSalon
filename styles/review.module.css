@@ -1,4 +1,5 @@
 .review__container{
+    margin-top: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,9 +17,17 @@
     gap: 0.6rem;
 
 }
-.inputs input{
+.inputs input[type="text"]{
     width: 70vw;
     padding : 0.9rem 2rem;
+    margin: 0.8rem;
+    border-radius: 20px;
+    border : solid 1px black;
+}
+
+.inputs input[type="number"]{
+    font-weight: bolder;
+    padding : 0.9rem 1rem;
     margin: 0.8rem;
     border-radius: 20px;
     border : solid 1px black;
