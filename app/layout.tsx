@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify'
 import { Providers } from '@/redux/Provider'
 import { Analytics } from '@vercel/analytics/react';
 import '@smastrom/react-rating/style.css' 
+import Announcement from '@/Components/UI/Announcement'
 
 type Metadata = {
   title: string;
@@ -62,7 +63,9 @@ export default function RootLayout({
               theme="light"
         />
        
-          {/**@ts-ignore */}
+        
+        <Announcement text='Décrochez -25% sur votre abonnement mensuel !' lien='/create-account' />
+        {/**@ts-ignore */}
         <Navbar />
         {children}
         <Footer />

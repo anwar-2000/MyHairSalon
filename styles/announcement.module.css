@@ -1,0 +1,29 @@
+.announcement__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 40px;
+    transform: translateY(-1rem) !important;
+    animation-name: colorchange;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+.announcement__container a {
+    color: rgb(28, 26, 26);
+}
+
+@media screen and (max-width : 460px) {
+    .announcement__container a {
+        font-size: 10px;
+        text-align: center;
+    }
+}
+
+@keyframes colorchange {
+    0%   {background: #FF6347;} /* Tomato */
+  25%  {background: #FFD700;} /* Gold */
+  50%  {background: #40E0D0;} /* Turquoise */
+  75%  {background: #ADFF2F;} /* GreenYellow */
+  100% {background: #FF6347;} /* Tomato */
+  }

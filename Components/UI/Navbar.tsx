@@ -16,7 +16,7 @@ const Navbar = async () => {
                             <Image src={'/logo.png'} alt={'MonSalonConnect'} width={200} height={70} priority/>
                     </div>
                     <div className={classes.list}>
-                            <Link href="">À propos de nous</Link>
+                            <Link href="/tarifs">Nos Tarifs</Link>
                             <Link href="/find-salons">Trouver des salons</Link>
                     </div>
             </div>

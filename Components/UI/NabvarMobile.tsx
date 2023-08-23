@@ -47,7 +47,7 @@ const NabvarMobile = ({ session }: any) => {
               <Link href="/create-account">Créer un compte</Link>
             </li>
             <li onClick={() => setShowNav(!showNav)}>
-              <Link href="/">À propos de nous</Link>
+              <Link href="/tarifs">Nos Tarifs</Link>
             </li>
           </motion.ul>
         )}
