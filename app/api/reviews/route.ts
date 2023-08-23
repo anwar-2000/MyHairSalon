@@ -33,7 +33,15 @@ export async function POST(req: Request) {
   createMongoConnection()
   try {
     const body = await req.json();
-    const newReview = await Reviews.create(body);
+    console.log(body)
+    const newReview = await Reviews.create({
+      salon: body.salon,
+      review: {
+        name: body.reviews.name,
+        text: body.reviews.text,
+        stars: body.reviews.stars
+      }
+    });
     return  NextResponse.json({'Salon CREATED ' : newReview});
   } catch (error) {
     console.error(error);

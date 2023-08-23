@@ -36,9 +36,11 @@
     padding: 0.8rem 3rem;
     border-radius: 5px;
     border : solid 1px black;
-    background-color: white;
-    color : black;
-        cursor: pointer;
+    background-color: rgb(2, 2, 2);
+    color : rgb(240, 240, 240);
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'poppins',sans-serif;
 }
 .rating{
     display: flex;

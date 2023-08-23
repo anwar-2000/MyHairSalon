@@ -8,21 +8,22 @@ import { Session } from 'next-auth/core/types'
 const Review = ({session , salon}:{session:Session; salon :string}) => {
   const [text, setText] = useState('');
   const [stars, setStars] = useState(3);
+  const [loading, setLoading] = useState(false);
+  const [showReviews, setshowReviews] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+    setLoading(true)
     const newReview = {
       salon: salon, 
-      reviews: [
+      reviews: 
         {
           name: session?.user?.email,
           text: text,
           stars: stars
         }
-      ]
     };
-  
+    console.log(newReview)
     try {
       const response = await fetch('/api/reviews', {
         method: 'POST',
@@ -43,11 +44,13 @@ const Review = ({session , salon}:{session:Session; salon :string}) => {
     } catch (error) {
       console.error('Error adding review:', error);
     }
+    setLoading(false)
   };
 
   
   return  <div className={classes.review__container}>
-  <form className={classes.inputs} onSubmit={handleSubmit}>
+  <button onClick={()=>setshowReviews(!showReviews)}>LES AVIS</button>
+ {showReviews && <form className={classes.inputs} onSubmit={handleSubmit}>
     <input
       type="text"
       placeholder="Donnez votre avis sur ce salon ..."
@@ -60,8 +63,8 @@ const Review = ({session , salon}:{session:Session; salon :string}) => {
       <input type="number" defaultValue={3} max={5} min={1} step={1} onChange={(e)=>setStars(parseInt(e.target.value))} />
       <LiaStarSolid   color={'yellow'} size={20}   />
     </div>
-    <button type="submit">Ajouter</button>
-  </form>
+    <button type="submit">{ loading ? 'Votre avis est en cours' : 'Je donne mon avis'}</button>
+  </form>}
 </div>
 }
 

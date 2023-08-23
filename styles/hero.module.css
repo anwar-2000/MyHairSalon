@@ -27,7 +27,21 @@
     left : 1.5rem;
     bottom : 1rem;
     cursor: pointer;
+    transition: all 0.4s ease-in;
 }
+.hero__first button:hover{
+    padding: 0.6rem 3rem;
+    border-radius: 8px;
+    background-color: #201d1d;
+    color: white;
+    border: none;
+    font-size: large;
+    position: relative;
+    left : 1.5rem;
+    bottom : 1rem;
+    cursor: pointer;
+}
+
 .hero__video{
     align-self: center;
     display: flex;

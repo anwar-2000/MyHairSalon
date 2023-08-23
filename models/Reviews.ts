@@ -8,18 +8,18 @@ interface Review {
 
 interface ReviewPattern {
     salon: string;
-    reviews: Review;
+    review: Review;
 }
 
 const ReviewSchema: Schema<ReviewPattern> = new Schema({
     salon: { type: String, required: true },
-    reviews: {
+    review: {
         name: { type: String, required: true },
         text: { type: String, required: true },
         stars: { type: Number, required: true, min: 1, max: 5 }
     }
 });
 
-const Reviews = model<ReviewPattern>('Reviews', ReviewSchema);
+const Reviews = model<ReviewPattern>('usersReviews', ReviewSchema);
 
 export default Reviews;
