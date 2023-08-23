@@ -39,7 +39,7 @@ const SalonInfo:React.FC<Props> = ({name,address,place,owner,country,image,hairc
     const [updatedImage, setupdatedImage] = useState(image);
     const [Newhaircuts, setNewHaircuts] = useState<Haircut[]>(haircuts);
     const [selectedDays, setSelectedDays] = useState<string[]>([]);
-
+    const [creating, setcreating] = useState(false)
     const [openHour, setOpenHour] = useState<string>("");
     const [closingHour, setClosingHour] = useState<string>("");
 
@@ -119,7 +119,7 @@ const tileClassName = ({ date = new Date() }) => {
 
     async function EditPersonalInfos(e : any , email : string) {
         e.preventDefault();
-         
+        setcreating(true)
         setNewOpenDays([{startTime : openHour , endTime : closingHour}])
         let formData = {
             name : updatedName,
@@ -147,7 +147,9 @@ const tileClassName = ({ date = new Date() }) => {
             position: toast.POSITION.TOP_RIGHT,
             theme: "colored"
         });  
+
         }
+        setcreating(false)
       }
 
   return <form onSubmit={(e)=>EditPersonalInfos(e,owner)}>
@@ -246,7 +248,7 @@ const tileClassName = ({ date = new Date() }) => {
         </div>
 
         <button type='submit' className={classes.button}>
-            SAVE
+           {creating ? 'creation de votre Salon' :'Créer mon salon'}
         </button>
         </div>
   </form>

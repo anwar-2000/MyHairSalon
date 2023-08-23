@@ -46,7 +46,7 @@ export async function POST(req: Request) {
     const newUser = await UserModel.create(body);
     return  NextResponse.json({'USER CREATED ' : newUser});
   } catch (error) {
-    console.error(error);
+    console.error("ERROR CREATING USER",error);
     return  NextResponse.json({error});
   }
 }

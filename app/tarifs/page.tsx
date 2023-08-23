@@ -22,7 +22,7 @@ const page =  () => {
           <div className="info">
               <h1>Mon Salon Connect</h1>
               <h3>Abonnement 3 Mois</h3>
-              <h5> 79.99 €</h5>
+              <h5> 45.99 €</h5>
           </div>
           <div className="descr__payment">
             <div className="desc">
@@ -35,7 +35,7 @@ const page =  () => {
           <div className="info">
               <h1>Mon Salon Connect</h1>
               <h3>Abonnement 1 Mois</h3>
-              <h5>44.99 €</h5>
+              <h5>15.99 €</h5>
           </div>
           <div className="descr__payment">
             <div className="desc">
